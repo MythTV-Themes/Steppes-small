@@ -1,0 +1,100 @@
+<mythuitheme>
+    <window name="mainmenu">
+
+        <imagetype name="fanart">
+            <area>0,0,100%,100%</area>
+            <filename>Backgrounds/</filename>
+        </imagetype>
+
+        <group name="pagedate" from="baseDateHeading" />
+
+        <buttonlist name="menu" from="groupsList">
+            <area>35,30,520,-30</area>
+            <align>vcenter,left</align>
+            <scrollstyle>free</scrollstyle>
+            <wrapstyle>selection</wrapstyle>
+            <triggerevent context="Global" action="SELECT">RIGHT</triggerevent>
+
+            <statetype name="buttonitem">
+                <area>0,0,100%,100%</area>
+
+                <state name="inactive">
+                    <area>20,0,-20,98</area>
+                    <shape name="groupBorder">
+                        <cornerradius>10</cornerradius>
+                    </shape>
+                </state>
+
+                <state name="active" from="inactive" />
+
+                <state name="selectedinactive" from="inactive">
+                    <area>0,0,100%,110</area>
+
+                    <textarea name="buttontext">
+                        <area>7,3,-7,-3</area>
+                    </textarea>
+                </state>
+
+                <state name="selectedactive" from="selectedinactive">
+                    <area>0,0,100%,196</area>
+
+                    <shape name="groupBorder">
+                        <area>10,0,-10,100%</area>
+                    </shape>
+
+                    <shape name="highlightleft">
+                        <area>0,30,4,-30</area>
+                        <minsize>100%,20</minsize>
+                        <type>ellipse</type>
+                        <fill color="#50EFDF" />
+                    </shape>
+                    <shape name="highlightright">
+                        <area>100%-4,30,4,-30</area>
+                        <minsize>100%,20</minsize>
+                        <type>ellipse</type>
+                        <fill color="#50EFDF" />
+                    </shape>
+                    <shape name="desctop">
+                        <area>13,100%-110,-13,55</area>
+                        <type>roundbox</type>
+                        <cornerradius>1</cornerradius>
+                        <fill style="gradient">
+                            <gradient start="#000000" end="#AA99AA" alpha="224" direction="vertical" />
+                        </fill>
+                        <alpha>192</alpha>
+                    </shape>
+                    <shape name="descbottom">
+                        <area>13,100%-55,-13,-3</area>
+                        <type>roundbox</type>
+                        <cornerradius>1</cornerradius>
+                        <fill style="gradient">
+                            <gradient start="#AA99AA" end="#000000" alpha="224" direction="vertical" />
+                        </fill>
+                        <alpha>192</alpha>
+                    </shape>
+                    <textarea name="description">
+                        <area>10,100%-110,-10,-3</area>
+                        <font>mysmallbold</font>
+                        <align>center</align>
+                        <multiline>yes</multiline>
+                    </textarea>
+                    <textarea name="buttontext">
+                        <area>8,0,-8,-110</area>
+                        <align>center</align>
+                        <font>mylargebold</font>
+                        <multiline>yes</multiline>
+                        <cutdown>yes</cutdown>
+                    </textarea>
+                </state>
+            </statetype>
+            <!-- loosen up the scroll arrows -->
+            <statetype name="upscrollarrow">
+                <position>100%-20,100%-110</position>
+            </statetype>
+            <statetype name="downscrollarrow">
+                <position>100%-20,100%-80</position>
+            </statetype>
+        </buttonlist>
+
+    </window>
+</mythuitheme>

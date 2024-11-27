@@ -1,0 +1,75 @@
+<mythuitheme>
+
+    <group name="VideoExtraGroup">
+        <!--
+            <area>0,50,1345,100%</area>
+        -->
+        <area>0,50,100%,100%</area>
+        <minsize shrink="short" vanish="true">100%,110</minsize>
+
+        <textarea name="subtitle">
+            <area>130,0,-30,38</area>
+            <minsize shrink="short" vanish="true">100%,40</minsize>
+            <align>left,vcenter</align>
+            <font>mymediumlight</font>
+        </textarea>
+
+        <textarea name="s##e##" depends="subtitle">
+            <area>0,0,130,38</area>
+            <minsize shrink="short" vanish="true">100%,40</minsize>
+            <font>myverysmalllabel</font>
+            <align>center</align>
+        </textarea>
+
+        <textarea name="description" depends="subtitle">
+            <area>0,43,-15,-45</area>
+            <align>top,left</align>
+            <minsize shrink="short" vanish="true">100%,1</minsize>
+            <font>mydesc</font>
+            <multiline>yes</multiline>
+            <extraleading>-2</extraleading>
+            <scroll direction="vertical" rate="10" returnrate="70" startdelay="17" returndelay="17" />
+            <cutdown>no</cutdown>
+            <template>[font]myverysmalllabel[/font]%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%%\n[font]myverysmallsub[/font]|CAST| %</template>
+        </textarea>
+
+        <textarea name="description0" depends="!subtitle">
+            <area>0,0,-15,-45</area>
+            <align>top,left</align>
+            <minsize shrink="short" vanish="true">100%,1</minsize>
+            <font>mydesc</font>
+            <multiline>yes</multiline>
+            <extraleading>-2</extraleading>
+            <scroll direction="vertical" rate="10" returnrate="70" startdelay="17" returndelay="17" />
+            <cutdown>no</cutdown>
+            <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%%\n[font]myverysmallsub[/font]|CAST| %</template>
+        </textarea>
+
+        <textarea name="rating">
+            <area>100%-200,100%-34,-15,30</area>
+            <minsize shrink="short" vanish="true">1,1</minsize>
+            <align>right,top</align>
+            <font>myverysmall</font>
+        </textarea>
+
+        <textarea name="length" from="rating">
+            <area>100%-400,100%-34,200,30</area>
+        </textarea>
+
+        <textarea name="userrating" from="rating">
+            <area>10,100%-34,400,30</area>
+            <align>left,top</align>
+            <template>User Rating: %1</template>
+        </textarea>
+
+        <textarea name="director">
+            <area>420,100%-34,-420,30</area>
+            <minsize shrink="short" vanish="true">1,1</minsize>
+            <font>myverysmall</font>
+            <align>top,hcenter</align>
+            <template>Directed by %1</template>
+        </textarea>
+
+    </group>
+
+</mythuitheme>

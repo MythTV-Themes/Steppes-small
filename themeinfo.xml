@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<themeinfo>
+    <name>Steppes-small</name>
+    <aspect>16:9</aspect>
+    <author>
+        <name>John Poet</name>
+        <email>jpoet@mythtv.org</email>
+    </author>
+
+    <!-- The Theme Types (Required) -->
+    <types>
+        <!-- Type. Legal Values are one or more of: UI, OSD and Menu -->
+        <type>UI</type>
+        <type>OSD</type>
+    </types>
+
+    <baseres>1920x1080</baseres>
+
+    <version>
+        <major>34</major>
+        <minor>0</minor>
+    </version>
+
+    <detail>
+        <thumbnail name="preview">preview.jpg</thumbnail>
+        <!--
+            <thumbnail name="osdpreview">osd_preview.jpg</thumbnail>
+        -->
+        <description>Designed to show off some different element arrangements.  Tested at 1280x720 and with Français.
+        Reminder: On Watch Recordings screen [Rew] and [FF] can be used to change the Rec. Group.</description>
+        <errata>REQUIRES MythTV from 2019-05-31</errata>
+    </detail>
+</themeinfo>

@@ -1,0 +1,774 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mythuitheme SYSTEM "http://www.mythtv.org/schema/mythuitheme.dtd">
+
+<mythuitheme>
+
+    <window name="streamview"  include="steppes-music.xml">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="channel">
+                    <area>25,5,-25,-5</area>
+                    <minsize>50,100%</minsize>
+                    <align>center</align>
+                    <font>mymediumsemibold</font>
+                    <cutdown>no</cutdown>
+                    <template>%BROADCASTER| - %%CHANNEL%</template>
+                    <value>Radio Stream</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="streamgroup">
+            <area>30,30,50%-100,760</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+                <cornerradius>20</cornerradius>
+            </shape>
+
+            <textarea name="nostreams" from="basetextarea">
+                <area>20,20,-20,-60</area>
+                <multiline>yes</multiline>
+                <align>allcenter</align>
+                <value>Press MENU to add some radio streams to play.</value>
+            </textarea>
+
+            <buttonlist name="streamlist">
+                <arrange>stack</arrange>
+                <align>vcenter,left</align>
+                <area>10,0,-10,100%</area>
+                <buttonarea>20,0,-20,100%</buttonarea>
+                <scrollstyle>free</scrollstyle>
+                <wrapstyle>items</wrapstyle>
+                <spacing>0</spacing>
+
+                <searchposition>-1,400</searchposition>
+
+                <statetype name="buttonitem">
+                    <area>0,20,100%,100%</area>
+                    <state name="inactive">
+                        <area>0,0,100%,120</area>
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>9,0,-9,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="1" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                                <shape name="highlightleft" />
+                                <shape name="highlightright" />
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <area>7,0,-7,100%</area>
+                                    <line color="#33bf33" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+
+                        <imagetype name="buttonimage">
+                            <area>15,10,100,-10</area>
+                            <filename>mm_icecast.png</filename>
+                            <preserveaspect>true</preserveaspect>
+                        </imagetype>
+
+                        <textarea name="station" from="basetextarea">
+                            <area>120,10,-10,80</area>
+                            <align>left,top</align>
+                            <multiline>yes</multiline>
+                            <font>mysmall</font>
+                            <template>%channel% (%station%)</template>
+                        </textarea>
+
+                        <textarea name="genre" from="basetextarea">
+                            <area>125,100%-42,-15,-5</area>
+                            <align>left,bottom</align>
+                            <font>myverysmall</font>
+                        </textarea>
+                    </state>
+
+                    <state name="active" from="inactive" />
+
+                    <state name="selectedinactive" from="inactive">
+                        <textarea name="station">
+                            <cutdown>no</cutdown>
+                            <!-- 15 pixels/sec up, 35 pixels/sec down, 4 second delay -->
+                            <scroll direction="vertical" rate="15" returnrate="35" startdelay="4" returndelay="4"/>
+                        </textarea>
+
+                        <textarea name="genre">
+                            <cutdown>no</cutdown>
+                            <scroll direction="horizontal" returnrate="140" returndelay="4" />
+                        </textarea>
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="highlightleft">
+                                    <area>0,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <area>100%-4,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <line color="#33bf33" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+                    </state>
+
+                    <state name="selectedactive" from="selectedinactive">
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>6,0,-6,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="4" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <line color="#33bf33" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="default">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="default">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+
+                    </state>
+                </statetype>
+
+                <statetype name="upscrollarrow">
+                    <area>100%-20,50%-25,20,20</area>
+                    <state type="off">
+                    </state>
+                    <state type="full">
+                        <imagetype name="upon">
+                            <filename>Images/uparrow-on.png</filename>
+                        </imagetype>
+                    </state>
+                </statetype>
+                <statetype name="downscrollarrow">
+                    <area>100%-20,50%+5,20,20</area>
+                    <state type="off">
+                    </state>
+                    <state type="full">
+                        <imagetype name="dnon">
+                            <filename>Images/downarrow-on.png</filename>
+                        </imagetype>
+                    </state>
+                </statetype>
+            </buttonlist>
+        </group>
+
+        <group name="trackgroup">
+            <area>50%-70,30,-30,760</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+                <cornerradius>20</cornerradius>
+            </shape>
+
+            <buttonlist name="playedtrackslist">
+                <arrange>stack</arrange>
+                <align>vcenter,left</align>
+                <area>6,0,-6,100%</area>
+                <buttonarea>20,0,-20,100%</buttonarea>
+                <scrollstyle>free</scrollstyle>
+                <wrapstyle>items</wrapstyle>
+                <spacing>0</spacing>
+
+                <searchposition>-1,200</searchposition>
+
+                <statetype name="buttonitem">
+                    <area>0,20,100%,100%</area>
+
+                    <state name="inactive">
+                        <area>0,0,100%,90</area>
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>9,0,-9,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="1" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                                <shape name="highlightleft" />
+                                <shape name="highlightright" />
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <area>7,0,-7,100%</area>
+                                    <line color="#33bf33" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="3" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+
+                        <imagetype name="buttonimage">
+                            <area>100%-85,10,70,-10</area>
+                            <filename>mm_icecast.png</filename>
+                            <preserveaspect>true</preserveaspect>
+                        </imagetype>
+
+                        <textarea name="tracknum" from="basetextarea">
+                            <area>12,5,90,45</area>
+                            <align>right,top</align>
+                            <font>mymedium</font>
+                            <template>%1 -</template>
+                        </textarea>
+
+                        <textarea name="title" from="basetextarea">
+                            <area>110,5,-100,45</area>
+                            <align>left,top</align>
+                            <font>mymedium</font>
+                        </textarea>
+
+                        <textarea name="artist" from="basetextarea">
+                            <area>80,40,-220,-5</area>
+                            <align>left,bottom</align>
+                            <font>mysmall</font>
+                        </textarea>
+
+                        <textarea name="length" from="basetextarea">
+                            <area>100%-210,40,120,-5</area>
+                            <align>right,bottom</align>
+                            <font>mysmall</font>
+                        </textarea>
+
+                    </state>
+
+                    <state name="active" from="inactive" />
+
+                    <state name="selectedinactive" from="active">
+                        <statetype name="movestate" from="basemovestate">
+                            <position>100%-30,50%-7</position>
+                        </statetype>
+
+                        <textarea name="title">
+                            <cutdown>no</cutdown>
+                            <scroll direction="horizontal" returnrate="140" returndelay="4" />
+                        </textarea>
+
+                        <textarea name="artist">
+                            <cutdown>no</cutdown>
+                            <scroll direction="horizontal" returnrate="140" returndelay="4" />
+                        </textarea>
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>9,0,-9,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="1" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                                <shape name="highlightleft">
+                                    <area>0,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <area>100%-4,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <area>7,0,-7,100%</area>
+                                    <line color="#33bf33" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="playing">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="3" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+                    </state>
+
+                    <state name="selectedactive" from="selectedinactive">
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>6,0,-6,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="4" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                                <shape name="highlightleft">
+                                    <area>0,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <area>100%-4,20,4,-20</area>
+                                    <minsize>100%,20</minsize>
+                                    <type>ellipse</type>
+                                    <fill color="#00FFFF" alpha="160" />
+                                </shape>
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <line color="#33bf33" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#33bf33" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="default">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#ff9147" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="default">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="4" alpha="255" />
+                                </shape>
+                                <shape name="highlightleft">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                                <shape name="highlightright">
+                                    <fill color="#e43e3e" alpha="255" />
+                                </shape>
+                            </state>
+                        </statetype>
+                    </state>
+                </statetype>
+
+                <statetype name="upscrollarrow">
+                    <area>100%-20,50%-25,20,20</area>
+                    <state type="off">
+                    </state>
+                    <state type="full">
+                        <imagetype name="upon">
+                            <filename>Images/uparrow-on.png</filename>
+                        </imagetype>
+                    </state>
+                </statetype>
+                <statetype name="downscrollarrow">
+                    <area>100%-20,50%+5,20,20</area>
+                    <state type="off">
+                    </state>
+                    <state type="full">
+                        <imagetype name="dnon">
+                            <filename>Images/downarrow-on.png</filename>
+                        </imagetype>
+                    </state>
+                </statetype>
+            </buttonlist>
+
+        </group>
+
+        <group name="infogroup" from="basestreaminfogroup" />
+
+        <group name="previewgroup">
+            <area>48,802,434,255</area>
+
+            <shape name="previewShape">
+                <area>0,0,100%,100%</area>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#555555" alpha="255" />
+            </shape>
+
+            <video name="visualizer">
+                <area>12,12,-12,-12</area>
+            </video>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Radio Stream -> 'E'
+    -->
+    <window name="editstreammetadata">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Add/Edit Music Stream</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>30,10,-30,-85</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="broadcasterlabel" from="labeltext">
+                <position>20,5</position>
+                <value>Broadcaster:</value>
+            </textarea>
+
+            <textedit name="broadcasteredit" from="basewidetextedit">
+                <area>280,5,-30,105</area>
+            </textedit>
+
+            <textarea name="channel_label" from="broadcasterlabel">
+                <position>20,95</position>
+                <value>Channel:</value>
+            </textarea>
+
+            <textedit name="channeledit" from="broadcasteredit">
+                <position>280,95</position>
+            </textedit>
+
+            <textarea name="descriptionlabel" from="broadcasterlabel">
+                <position>20,185</position>
+                <value>Description:</value>
+            </textarea>
+            <textedit name="descriptionedit" from="broadcasteredit">
+                <position>280,185</position>
+            </textedit>
+
+            <textarea name="urllabel" from="broadcasterlabel">
+                <position>20,275</position>
+                <value>URL 1:</value>
+            </textarea>
+            <textedit name="url1edit" from="descriptionedit">
+                <position>280,275</position>
+            </textedit>
+
+            <textarea name="url2label" from="broadcasterlabel">
+                <position>20,365</position>
+                <value>URL 2:</value>
+            </textarea>
+            <textedit name="url2edit" from="descriptionedit">
+                <area>280,365,50%-100,105</area>
+            </textedit>
+
+            <textarea name="url3label" from="broadcasterlabel">
+                <position>50%-100,365</position>
+                <value>URL 3:</value>
+            </textarea>
+            <textedit name="url3edit" from="descriptionedit">
+                <area>50%+150,365,-30,105</area>
+            </textedit>
+
+            <textarea name="url4label" from="url2label">
+                <position>20,455</position>
+                <value>URL 4:</value>
+            </textarea>
+            <textedit name="url4edit" from="url2edit">
+                <position>280,455</position>
+            </textedit>
+
+            <textarea name="url5label" from="url3label">
+                <position>50%-100,455</position>
+                <value>URL 5:</value>
+            </textarea>
+
+            <textedit name="url5edit" from="url3edit">
+                <position>50%+150,455</position>
+            </textedit>
+
+            <textarea name="logourllabel" from="broadcasterlabel">
+                <position>20,545</position>
+                <value>Logo URL:</value>
+            </textarea>
+            <textedit name="logourledit" from="descriptionedit">
+                <position>280,545</position>
+            </textedit>
+
+            <textarea name="genrelabel" from="broadcasterlabel">
+                <position>20,635</position>
+                <value>Genres:</value>
+            </textarea>
+            <textedit name="genreedit" from="descriptionedit">
+                <position>280,635</position>
+            </textedit>
+
+            <textarea name="formatlabel" from="broadcasterlabel">
+                <position>20,725</position>
+                <value>Metadata Format:</value>
+            </textarea>
+            <textedit name="formatedit" from="descriptionedit">
+                <position>280,725</position>
+            </textedit>
+
+            <textarea name="countrylabel" from="broadcasterlabel">
+                <position>20,815</position>
+                <value>Country:</value>
+            </textarea>
+            <textedit name="countryedit" from="basewidetextedit">
+                <position>280,815</position>
+            </textedit>
+
+            <textarea name="languagelabel" from="broadcasterlabel">
+                <position>960,815</position>
+                <value>Language:</value>
+            </textarea>
+            <textedit name="languageedit" from="basewidetextedit">
+                <position>1230,815</position>
+            </textedit>
+
+            <group name="buttongroup">
+                <area>50, 100%-80, 60%, 80</area>
+                <button name="cancelbutton" from="prev_button">
+                    <value>Cancel</value>
+                </button>
+                <button name="savebutton" from="next_button">
+                    <value>Save</value>
+                </button>
+            </group>
+
+            <button name="searchbutton" from="varbuttonleft">
+                <area>70%,100%-85,-10,80</area>
+                <value>Search</value>
+            </button>
+
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Radio Stream -> 'E' -> [Search]
+    -->
+    <window name="searchstream">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Search for Music Stream</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>50%-700,20,1400,-90</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="broadcasterlabel" from="labeltext">
+                <position>10,20</position>
+                <value>Broadcaster:</value>
+            </textarea>
+
+            <buttonlist name="broadcasterlist" from="basewideselector">
+                <position>280,20</position>
+            </buttonlist>
+
+            <textarea name="countrylabel" from="broadcasterlabel">
+                <position>20,110</position>
+                <value>Country:</value>
+            </textarea>
+
+            <buttonlist name="countrylist" from="basewideselector">
+                <position>280,110</position>
+            </buttonlist>
+
+            <textarea name="languagelabel" from="broadcasterlabel">
+                <position>20,200</position>
+                <value>Language:</value>
+            </textarea>
+
+            <buttonlist name="languagelist" from="basewideselector">
+                <position>280,200</position>
+            </buttonlist>
+
+            <textarea name="genrelabel" from="broadcasterlabel">
+                <position>20,290</position>
+                <value>Genre:</value>
+            </textarea>
+
+            <buttonlist name="genrelist" from="broadcasterlist">
+                <position>280,290</position>
+            </buttonlist>
+
+            <textarea name="channellabel" from="broadcasterlabel">
+                <position>20,380</position>
+                <value>Channel:</value>
+            </textarea>
+
+            <textedit name="channeledit" from="basewidetextedit">
+                <position>280,380</position>
+            </textedit>
+
+            <group name="matches" from="basematchgroup">
+                <area>1000, 290, 400, 90</area>
+                <textarea name="matchestext" from="resulttext" />
+            </group>
+
+            <buttonlist name="streamlist" from="basebuttonlist">
+                <area>5,470,-5,100%</area>
+                <align>top,hcenter</align>
+                <spacing>1</spacing>
+                <buttonarea>30,0,-30,100%</buttonarea>
+                <searchposition>1300,250</searchposition>
+
+                <statetype name="buttonitem">
+                    <state name="active">
+                        <shape name="background" from="basebuttonshape" />
+                        <statetype name="selectedstate" from="selectedbox" />
+                        <imagetype name="buttonimage">
+                            <area>45,10,50,-10</area>
+                            <filename>mm_icecast.png</filename>
+                            <preserveaspect>true</preserveaspect>
+                        </imagetype>
+                        <textarea name="broadcaster" from="buttontext">
+                            <area>105,5,-300,-5</area>
+                            <template>%BROADCASTER% - %Channel%</template>
+                            <align>left,vcenter</align>
+                        </textarea>
+                        <textarea name="genre" from="buttontext">
+                            <area>100%-300,5,-5,-5</area>
+                            <align>left,vcenter</align>
+                        </textarea>
+                    </state>
+                    <state name="selectedinactive" from="active">
+                    </state>
+                    <state name="selectedactive" from="selectedinactive">
+                        <shape name="background"
+                               from="baseselectedbuttonshape" />
+                    </state>
+                </statetype>
+
+            </buttonlist>
+        </group>
+    </window>
+
+</mythuitheme>

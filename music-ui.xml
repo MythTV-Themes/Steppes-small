@@ -1,0 +1,2184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mythuitheme SYSTEM "http://www.mythtv.org/schema/mythuitheme.xsd">
+
+<mythuitheme>
+
+    <!-- Home -> Media Library -> Listen to Music
+    -->
+    <window name="playlistview" include="steppes-music.xml">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Play List</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playlist" from="baseplaylist">
+            <area>20,85,-20,-285</area>
+
+            <buttonlist name="currentplaylist">
+                <wrapstyle>selection</wrapstyle>
+                <scrollstyle>free</scrollstyle>
+                <searchposition>-1,790</searchposition>
+
+                <statetype name="buttonitem">
+                    <state name="selectedinactive">
+                        <area>0,0,100%,200</area>
+
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+                        </statetype>
+
+                        <imagetype name="buttonimage">
+                            <area>15,10,180,-10</area>
+                        </imagetype>
+
+                        <textarea name="tracknum" from="basetextarea">
+                            <area>200,10,90,60</area>
+                            <font>mylarge</font>
+                            <align>right,vcenter</align>
+                            <template>%1 -</template>
+                        </textarea>
+
+                        <textarea name="title" from="basetextarea">
+                            <area>300,10,-410,50</area>
+                            <font>mylarge</font>
+                        </textarea>
+
+                        <textarea name="artist" from="basetextarea">
+                            <area>300,65,-410,45</area>
+                        </textarea>
+
+                        <textarea name="album" from="basetextarea">
+                            <area>300,110,-410,45</area>
+                        </textarea>
+
+                        <statetype name="ratingstate" from="baseratingstate">
+                            <position>275,100%-40</position>
+                        </statetype>
+
+                        <textarea name="genre" from="basetextarea">
+                            <area>500,100%-50,300,-5</area>
+                            <align>vcenter</align>
+                        </textarea>
+
+                        <textarea name="lastplayed" from="genre">
+                            <area>820,100%-50,500,-5</area>
+                        </textarea>
+
+                        <textarea name="playcount" from="genre">
+                            <area>1340,100%-50,300,-5</area>
+                            <template>Played %1 times</template>
+                        </textarea>
+
+                        <textarea name="length" from="artist">
+                            <area>100%-150,100%-50,-20,-5</area>
+                            <align>right,vcenter</align>
+                            <font>mysmall</font>
+                        </textarea>
+                    </state>
+
+                    <state name="selectedactive" from="selectedinactive">
+                        <statetype name="playstate">
+                            <area>0,0,100%,100%</area>
+
+                            <state name="default">
+                                <area>0,0,100%,100%</area>
+                                <shape name="statusborder">
+                                    <area>0,0,100%,100%</area>
+                                    <type>roundbox</type>
+                                    <line color="#00FFFF" width="7" alpha="160" />
+                                    <fill color="#000000" alpha="150" />
+                                    <cornerradius>10</cornerradius>
+                                </shape>
+                            </state>
+                            <state name="normal" from="default" />
+                            <state name="playing" from="default">
+                                <shape name="statusborder">
+                                    <line color="#33bf33" width="7" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="paused" from="default">
+                                <shape name="statusborder">
+                                    <line color="#ff9147" width="7" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="stopped" from="default">
+                                <shape name="statusborder">
+                                    <line color="#e43e3e" width="7" alpha="255" />
+                                </shape>
+                            </state>
+                            <state name="unavailable">
+                                <shape name="statusborder">
+                                    <line color="9e9e00" width="7" alpha="192" />
+                                </shape>
+                            </state>
+                        </statetype>
+                    </state>
+                </statetype>
+            </buttonlist>
+
+        </group>
+
+        <group name="playliststatus" from="baseplayliststatus" />
+
+        <group name="infogroup" from="basemusicinfogroup" />
+
+        <group name="previewgroup">
+            <area>48,802,434,255</area>
+
+            <shape name="previewShape">
+                <area>0,0,100%,100%</area>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#555555" alpha="255" />
+            </shape>
+
+            <video name="visualizer">
+                <area>12,12,-12,-12</area>
+            </video>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree"
+    -->
+    <window name="playlisteditorview_tree" include="steppes-music.xml">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Play List Editor (tree)</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playliststatus" from="baseplaylistfullstatus" />
+
+        <group name="treegroup">
+            <area>20,425,-30,-100</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttontree name="playlist_tree">
+                <area>20,10,-20,-55</area>
+                <numlists>2</numlists>
+                <spacing>10</spacing>
+                <buttonlist name="listtemplate" from="basechecklist">
+                    <statetype name="buttonitem">
+                        <state name="active">
+                            <shape name="background" from="basebuttonshape" />
+                            <shape name="checkbg">
+                                <area>0,0,0,0</area>
+                            </shape>
+                        </state>
+                        <state name="selectedinactive" from="active" />
+                        <state name="selectedactive" from="selectedinactive">
+                            <shape name="background"
+                                   from="baseselectedbuttonshape" />
+                        </state>
+                    </statetype>
+                </buttonlist>
+            </buttontree>
+
+            <group name="modegroup" from="baseModeGroup">
+                <area>20,100%-50,-20,45</area>
+                <textarea name="breadcrumbs" from="pagemode">
+                    <align>center</align>
+                    <font>mysmall</font>
+                    <cutdown>left</cutdown>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playlist" from="baseplaylist" />
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'
+         -> Switch View -> "Playlist Editor - Gallery"
+    -->
+    <window name="playlisteditorview_gallery" include="steppes-music.xml">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Play List Editor (gallery)</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playliststatus" from="baseplaylistfullstatus" />
+
+        <group name="gallerygroup">
+            <area>20,420,-20,-90</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttontree name="playlist_tree">
+                <area>25,25,-25,-60</area>
+                <numlists>1</numlists>
+                <spacing>5</spacing>
+                <buttonlist name="listtemplate" from="basegridlist">
+                    <area>10,30,-10,-30</area>
+                    <statetype name="buttonitem">
+                        <area>0,0,100%,100%</area>
+                        <state name="inactive">
+                            <area>0,0,220,220</area>
+
+                            <imagetype name="buttonimage">
+                                <area>12,12,-12,-12</area>
+                                <filename>mm_nothumb.png</filename>
+                            </imagetype>
+
+                            <statetype name="nodetype">
+                                <area>12,12,-12,-12</area>
+                                <state name="default" />
+                                <state name="alltracks">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="alltracks">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_alltracks.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="genres">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="genres">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_genres.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="albums">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="albums">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_albums.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="artists">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="artists">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_artists.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="compartists">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="compartists">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_compartists.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="ratings">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="ratings">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_ratings.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="years">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="years">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_years.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="compilations">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="compilations">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_compilations.png</filename>
+                                    </imagetype>
+                                </state>
+
+                                <!-- Added for commit ea54bba385 -->
+                                <state name="cd">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="cd">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_cd.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="directory">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="directory">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_directory.png</filename>
+                                    </imagetype>
+                                </state>
+
+                                <state name="playlists">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="playlists">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_playlists.png</filename>
+                                    </imagetype>
+                                </state>
+                                <state name="smartplaylists">
+                                    <area>0,0,100%,100%</area>
+                                    <imagetype name="smartplaylists">
+                                        <area>0,0,100%,100%</area>
+                                        <filename>mm_smartplaylists.png</filename>
+                                    </imagetype>
+                                </state>
+                            </statetype>
+
+                        </state>
+
+                        <state name="active" from="inactive" />
+
+                        <state name="selectedinactive" from="active">
+                            <area>-20,-20,260,260</area>
+                            <imagetype name="buttonimage">
+                                <area>12,12,-12,-12</area>
+                            </imagetype>
+                            <statetype name="nodetype">
+                                <area>12,12,-12,-12</area>
+                            </statetype>
+                        </state>
+
+                        <state name="selectedactive" from="selectedinactive">
+                            <shape name="statusborder">
+                                <line color="#00FFFF" width="5" alpha="160" />
+                                <fill color="#000000" alpha="240" />
+                            </shape>
+                            <imagetype name="buttonimage" />
+                            <statetype name="nodetype" />
+                        </state>
+
+                    </statetype>
+                </buttonlist>
+            </buttontree>
+
+            <group name="modegroup" from="baseModeGroup">
+                <area>20,100%-50,-20,45</area>
+                <textarea name="breadcrumbs" from="pagemode">
+                    <align>center</align>
+                    <font>mysmall</font>
+                    <cutdown>left</cutdown>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playlist" from="baseplaylist" />
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'
+         -> Switch View -> "Search for Music"
+    -->
+    <window name="searchview">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Play List Editor (search)</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="playliststatus" from="baseplaylistfullstatus" />
+
+        <group name="searchgroup">
+            <area>20,390,-30,-90</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttonlist name="field_list" from="basemediumselector">
+                <position>60,20</position>
+            </buttonlist>
+
+            <textedit name="criteria_edit" from="basewidetextedit">
+                <position>380,20</position>
+            </textedit>
+
+            <group name="matches" from="basematchgroup">
+                <area>1000,20,400,105</area>
+                <textarea name="matches_text" from="resulttext" />
+            </group>
+
+            <buttonlist name="tracks_list" from="basebuttonlist">
+                <area>5,125,-5,-10</area>
+                <searchposition>1300,250</searchposition>
+
+                <statetype name="buttonitem">
+                    <state name="active">
+                        <shape name="background" from="basebuttonshape" />
+                        <statetype name="selectedstate" from="selectedbox" />
+                        <imagetype name="buttonimage">
+                            <area>45,10,50,-10</area>
+                            <filename>mm_nothumb.png</filename>
+                            <preserveaspect>true</preserveaspect>
+                        </imagetype>
+                        <textarea name="title" from="buttontext">
+                            <area>105,5,-5,-5</area>
+                            <template>%TITLE% by %ARTIST% on %ALBUM%</template>
+                            <align>left,vcenter</align>
+                        </textarea>
+                    </state>
+                    <state name="selectedinactive" from="active">
+                    </state>
+                    <state name="selectedactive" from="selectedinactive">
+                        <shape name="background"
+                               from="baseselectedbuttonshape" />
+                    </state>
+                </statetype>
+            </buttonlist>
+        </group>
+
+        <group name="playlist" from="baseplaylist" />
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'
+         -> Switch View -> "Fullscreen Visualizer"
+    -->
+    <window name="visualizerview">
+        <video name="visualizer">
+            <area>0,0,100%,100%</area>
+        </video>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'
+         -> Lyrics
+    -->
+    <window name="trackslyricsview">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Track Lyrics</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="lyricsgroup">
+            <area>20,30,-20,-285</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttonlist name="lyrics_list" from="baseinfobuttonlist">
+                <area>10,10,-10,-10</area>
+            </buttonlist>
+
+        </group>
+
+
+        <group name="loadinggroup">
+            <area>50%-366,200,732,200</area>
+
+            <statetype name="loading_state">
+                <area>0,0,100%,100%</area>
+                <state name="off"></state>
+                <state name="on">
+                    <area>0,0,100%,100%</area>
+                    <shape name="dialogbackground" from="basewidgetshape">
+                        <area>0,0,100%,100%</area>
+                        <line color="#AA90FF" width="6" alpha="128"/>
+                    </shape>
+                    <imagetype name="loadinganimation">
+                        <area>20,20,140,-20</area>
+                        <filepattern low="1" high="72">Images/Busy/busy%1.png</filepattern>
+                        <delay>70</delay>
+                    </imagetype>
+                </state>
+            </statetype>
+
+            <textarea name="status_text" from="basetextarea">
+                <area>170,20,-30,-20</area>
+                <multiline>yes</multiline>
+                <align>center</align>
+            </textarea>
+        </group>
+
+        <group name="trackinfopanel" from="basemusicinfogroup" />
+
+        <group name="previewgroup">
+            <area>48,802,434,255</area>
+
+            <shape name="previewShape">
+                <area>0,0,100%,100%</area>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#555555" alpha="255" />
+            </shape>
+
+            <video name="visualizer">
+                <area>12,12,-12,-12</area>
+            </video>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Radio Stream -> 'M'
+         -> Lyrics
+    -->
+    <window name="streamlyricsview">
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Track Lyrics</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="lyricsgroup">
+            <area>20,30,-20,-285</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttonlist name="lyrics_list" from="baseinfobuttonlist">
+                <area>10,10,-10,-10</area>
+            </buttonlist>
+
+        </group>
+
+
+        <group name="loadinggroup">
+            <area>50%-366,200,732,200</area>
+
+            <statetype name="loading_state">
+                <area>0,0,100%,100%</area>
+                <state name="off"></state>
+                <state name="on">
+                    <area>0,0,100%,100%</area>
+                    <shape name="dialogbackground" from="basewidgetshape">
+                        <area>0,0,100%,100%</area>
+                        <line color="#AA90FF" width="6" alpha="128"/>
+                    </shape>
+                    <imagetype name="loadinganimation">
+                        <area>20,20,140,-20</area>
+                        <filepattern low="1" high="72">Images/Busy/busy%1.png</filepattern>
+                        <delay>70</delay>
+                    </imagetype>
+                </state>
+            </statetype>
+
+            <textarea name="status_text" from="basetextarea">
+                <area>170,20,-30,-20</area>
+                <multiline>yes</multiline>
+                <align>center</align>
+            </textarea>
+        </group>
+
+        <group name="streaminfopanel" from="basestreaminfogroup" />
+
+        <group name="previewgroup">
+            <area>48,802,434,255</area>
+
+            <shape name="previewShape">
+                <area>0,0,100%,100%</area>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#555555" alpha="255" />
+            </shape>
+
+            <video name="visualizer">
+                <area>12,12,-12,-12</area>
+            </video>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'
+         -> Lyrics -> 'M' -> Edit Lyrics
+    -->
+    <window name="editlyrics">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Add/Edit Lyrics</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>30,30,-30,-100</area>
+
+            <shape name="dialogbackground" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="grabberlabel" from="labeltextlarge">
+                <area>60,10,270,105</area>
+                <value>Grabber:</value>
+            </textarea>
+
+            <textedit name="grabberedit" from="basetextedit">
+                <position>340,10</position>
+            </textedit>
+
+            <checkbox name="syncronizedcheck" from="basecheckbox">
+                <position>900,10</position>
+            </checkbox>
+
+            <textarea name="syncroniszed_label" from="labelcheckbox">
+                <area>950,10,-20,105</area>
+                <value>Syncronized</value>
+            </textarea>
+
+            <textarea name="titlelabel" from="labeltextlarge">
+                <area>60,115,270,105</area>
+                <value>Title:</value>
+            </textarea>
+
+            <textedit name="titleedit" from="basewidetextedit">
+                <area>340,115,-100,105</area>
+            </textedit>
+
+            <textarea name="artistlabel" from="labeltext">
+                <area>60,220,270,105</area>
+                <value>Artist:</value>
+            </textarea>
+
+            <textedit name="artistedit" from="titleedit">
+                <position>340,220</position>
+            </textedit>
+
+            <textarea name="albumlabel" from="labeltext">
+                <area>60,325,270,105</area>
+                <value>Album:</value>
+            </textarea>
+
+            <textedit name="albumedit" from="titleedit">
+                <position>340,325</position>
+            </textedit>
+
+            <textarea name="lyricslabel" from="labeltext">
+                <area>60,430,-60,55</area>
+                <align>left</align>
+                <value>Lyrics:</value>
+            </textarea>
+
+            <textedit name="lyricsedit" from="basemultilinetextedit">
+                <area>100,485,-50,-100</area>
+            </textedit>
+
+            <button name="cancelbutton" from="varbuttonright">
+                <area>30,100%-90,100%-265,80</area>
+                <value>Cancel</value>
+            </button>
+
+            <button name="okbutton" from="varbuttonleft">
+                <area>100%-255,100%-90,-30,80</area>
+                <value>Save</value>
+            </button>
+        </group>
+    </window>
+
+
+
+    <!-- Used in the visualiser screen to show some track details
+         after a track change -->
+    <window name="trackinfo_popup">
+        <area>100%-800,20,780,260</area>
+
+        <shape name="background" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <imagetype name="coverart">
+            <filename>mm_nothumb.png</filename>
+            <area>22,22,144,144</area>
+        </imagetype>
+
+        <textarea name="title" from="basetextarea">
+            <area>170,10,-10,40</area>
+            <font>mysmall</font>
+        </textarea>
+
+        <textarea name="artist" from="basetextarea">
+            <area>170,50,-10,40</area>
+            <font>myverysmall</font>
+        </textarea>
+
+        <textarea name="album" from="artist">
+            <position>170,90</position>
+            <font>myverysmall</font>
+        </textarea>
+
+        <statetype name="ratings_state">
+        </statetype>
+
+        <textarea name="info" from="artist">
+            <area>170,130,-380,40</area>
+        </textarea>
+
+        <textarea name="time" from="artist">
+            <area>370,170,-10,40</area>
+            <align>right</align>
+        </textarea>
+
+        <textarea name="nexttitle" from="artist">
+            <position>170,210</position>
+            <template>Next: %NEXTTITLE% by %NEXTARTIST%</template>
+        </textarea>
+    </window>
+
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree" -> <select a "smart playlist">
+         -> 'E'(dit)
+    -->
+    <window name="smartplaylisteditor">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Smart Playlist Editor</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>50%-650,20,1300,-100</area>
+
+            <shape name="dialogbackground" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+
+            <textarea name="categorylbl"  from="labeltext">
+                <position>10,10</position>
+                <value>Category:</value>
+            </textarea>
+
+            <buttonlist name="categoryselector" from="basewideselector">
+                <position>270,10</position>
+            </buttonlist>
+
+            <button name="categorybutton" from="varbuttonleft">
+                <position>880,15</position>
+                <value>Edit</value>
+            </button>
+
+            <textarea name="titlelbl"  from="categorylbl">
+                <position>20,115</position>
+                <value>Title:</value>
+            </textarea>
+
+            <textedit name="titleedit" from="basetextedit">
+                <position>270,115</position>
+            </textedit>
+
+            <group name="rulegroup">
+                <area>5,220,-5,-200</area>
+
+                <shape name="dialogbackground" from="baseselectedwidgetshape">
+                    <area>0,0,100%,100%</area>
+                </shape>
+
+                <textarea name="matchlbl"  from="labeltext">
+                    <position>10,10</position>
+                    <value>Match:</value>
+                </textarea>
+
+                <buttonlist name="matchselector" from="baseselector">
+                    <position>270,10</position>
+                </buttonlist>
+
+                <textarea name="match2lbl" from="labelcheckbox">
+                    <position>430,10</position>
+                    <value>of the following conditions:</value>
+                </textarea>
+
+                <buttonlist name="criterialist" from="basebuttonlist">
+                    <area>10,100,-10,-20</area>
+                    <align>top,hcenter</align>
+                    <statetype name="buttonitem">
+                        <state name="active">
+                            <imagetype name="buttonimage">
+                                <area>3,3,45,-3</area>
+                                <filename>mm_nothumb.png</filename>
+                            </imagetype>
+
+                            <textarea name="buttontext">
+                                <area>55,3,-3,-3</area>
+                                <align>left,vcenter</align>
+                                <font>mysmall</font>
+                            </textarea>
+                        </state>
+                        <state name="selectedinactive" from="active">
+                            <shape name="background"
+                                   from="baseselectedinactivebuttonshape" />
+                        </state>
+                        <state name="selectedactive" from="active">
+                            <shape name="background"
+                                   from="baseselectedbuttonshape" />
+                        </state>
+                    </statetype>
+                </buttonlist>
+            </group>
+
+            <textarea name="orderbylbl" from="categorylbl">
+                <position>10,100%-195</position>
+                <value>Order By:</value>
+            </textarea>
+
+            <buttonlist name="orderbyselector" from="basewideselector">
+                <area>270,100%-195,400,105</area>
+            </buttonlist>
+
+            <button name="orderbybutton" from="varbuttonleft">
+                <position>680,100%-190</position>
+                <value>Edit</value>
+            </button>
+
+            <textarea name="limitlbl"  from="categorylbl">
+                <position>10,100%-105</position>
+                <value>Limit:</value>
+            </textarea>
+
+            <spinbox name="limitspin" from="basespinbox">
+                <position>270,100%-100</position>
+                <!--<template type="zero">No Limit</template> -->
+            </spinbox>
+
+            <group name="matchgroup" from="basematchgroup">
+                <area>440,100%-90,300,70</area>
+                <textarea name="matchestext" from="resulttext" />
+            </group>
+
+            <group name="buttongroup">
+                <area>100%-500,100%-170,-5,-10</area>
+
+                <button name="showresultsbutton" from="varbuttoncenter">
+                    <area>0,0,100%,80</area>
+                    <value>Show Results</value>
+                </button>
+
+                <button name="savebutton" from="varbuttonleft">
+                    <area>50%+5,80,250,80</area>
+                    <value>Save</value>
+                </button>
+
+                <button name="cancelbutton" from="varbuttonright">
+                    <area>50%-255,80,250,80</area>
+                    <value>Cancel</value>
+                </button>
+            </group>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree" -> <select a "smart playlist">
+         -> 'E'(dit) -> 'M'(enu) -> Add Criteria
+    -->
+    <window name="criteriaroweditor">
+        <area>-1,-1,900,580</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="title" from="basetextarea">
+            <area>20,20,-20,60</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <value>Edit Criteria</value>
+        </textarea>
+
+        <buttonlist name="fieldselector" from="basewideselector">
+            <position>40,100</position>
+        </buttonlist>
+
+        <buttonlist name="operatorselector" from="basewideselector">
+            <position>40,205</position>
+        </buttonlist>
+
+        <textedit name="value1edit" from="basewidetextedit">
+            <position>40,310</position>
+        </textedit>
+
+        <buttonlist name="value1selector" from="basewideselector">
+            <position>40,310</position>
+        </buttonlist>
+
+        <spinbox name="value1spinbox" from="basewidespinbox">
+            <position>40,310</position>
+        </spinbox>
+
+        <button name="value1button" from="varbuttonleft">
+            <position>650,320</position>
+            <value>Edit</value>
+        </button>
+
+        <textedit name="value2edit" from="basewidetextedit">
+            <position>40,415</position>
+        </textedit>
+
+        <buttonlist name="value2selector" from="basewideselector">
+            <position>40,415</position>
+        </buttonlist>
+
+        <spinbox name="value2spinbox" from="basewidespinbox">
+            <position>40,415</position>
+        </spinbox>
+
+        <button name="value2button" from="varbuttonleft">
+            <position>650,415</position>
+            <value>Edit</value>
+        </button>
+
+        <button name="savebutton" from="varbuttonright">
+            <area>100,100%-100,500,90</area>
+            <value>Save</value>
+        </button>
+
+        <button name="cancelbutton" from="varbuttonleft">
+            <area>70,100%-100,-70,85</area>
+            <value>Cancel</value>
+        </button>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree" -> <select a "smart playlist">
+         -> 'E'(dit) -> 'M'(enu) -> Add Criteria
+         -> "edit" [button] with a date category
+    -->
+    <window name="dateeditordialog">
+        <area>-1,-1,1000,700</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="title" from="basetextarea">
+            <area>20,20,-20,60</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <value>Edit Date</value>
+        </textarea>
+
+        <checkbox name="nowcheck" from="basecheckbox">
+            <position>40,100</position>
+        </checkbox>
+
+        <textarea name="nowlbl"  from="labelcheckbox">
+            <position>90,100</position>
+            <value>Use Current Date</value>
+        </textarea>
+
+        <checkbox name="fixeddatecheck" from="basecheckbox">
+            <position>40,180</position>
+        </checkbox>
+
+        <textarea name="fixeddatelbl"  from="labelcheckbox">
+            <position>90,180</position>
+            <value>Fixed Date</value>
+        </textarea>
+
+        <textarea name="daylbl"  from="labeltext">
+            <area>40,260,300,40</area>
+            <value>Day</value>
+            <align>center</align>
+        </textarea>
+
+        <spinbox name="dayspinbox" from="basemediumspinbox">
+            <position>40,300</position>
+        </spinbox>
+
+        <textarea name="monthlbl"  from="daylbl">
+            <position>350,260</position>
+            <value>Month</value>
+        </textarea>
+
+        <spinbox name="monthspinbox" from="dayspinbox">
+            <position>350,300</position>
+        </spinbox>
+
+        <textarea name="yearlbl" from="daylbl">
+            <position>660,260</position>
+            <value>Year</value>
+        </textarea>
+
+        <spinbox name="yearspinbox" from="dayspinbox">
+            <position>660,300</position>
+        </spinbox>
+
+        <textarea name="adddayslbl"  from="labeltext">
+            <position>170,380</position>
+            <value>+/- Days</value>
+        </textarea>
+
+        <spinbox name="adddaysspinbox" from="basespinbox">
+            <position>425,380</position>
+        </spinbox>
+
+        <group name="matchgroup" from="basematchgroup">
+            <area>20,500,-20,70</area>
+            <textarea name="statustext" from="resulttext" />
+        </group>
+
+        <button name="okbutton" from="varbuttonright">
+            <value>Done</value>
+        </button>
+
+        <button name="cancelbutton" from="varbuttonleft">
+            <value>Cancel</value>
+        </button>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree" -> <select a "smart playlist">
+         -> 'E'(dit) -> <ordery by> "edit" [button]
+    -->
+    <window name="orderbydialog">
+        <area>-1,-1,1000,600</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="title" from="basetextarea">
+            <area>20,25,-20,60</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <value>Order By Fields</value>
+        </textarea>
+
+        <group name="listgroup">
+            <area>20,90,500,-20</area>
+
+            <shape name="dialogbackground" from="baseselectedwidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttonlist name="fieldlist" from="basebuttonlist">
+                <area>10,10,-10,-10</area>
+                <spacing>1</spacing>
+                <statetype name="buttonitem">
+                    <state name="active">
+                        <statetype name="sortstate">
+                            <position>3,10</position>
+                            <state name="ascending">
+                                <imagetype name="statusimage">
+                                    <filename>mm_ascending.png</filename>
+                                </imagetype>
+                            </state>
+                            <state name="descending">
+                                <imagetype name="statusimage">
+                                    <filename>mm_descending.png</filename>
+                                </imagetype>
+                            </state>
+                        </statetype>
+
+                        <textarea name="buttontext">
+                            <area>40,5,-10,-5</area>
+                        </textarea>
+
+                    </state>
+                    <state name="selectedinactive" from="active">
+                        <shape name="background"
+                               from="baseselectedinactivebuttonshape" />
+                        <textarea name="buttontext" />
+                    </state>
+                    <state name="selectedactive" from="selectedinactive">
+                        <shape name="background"
+                               from="baseselectedbuttonshape" />
+                        <textarea name="buttontext" />
+                    </state>
+                </statetype>
+            </buttonlist>
+        </group>
+
+        <group name="optiongroup">
+            <area>520,90,500,-10</area>
+
+            <buttonlist name="fieldselector" from="basemediumselector">
+                <position>100,5</position>
+            </buttonlist>
+
+            <button name="addbutton" from="varbuttoncenter">
+                <area>20,110,210,85</area>
+                <value>Add</value>
+            </button>
+
+            <button name="deletebutton" from="addbutton">
+                <position>250,110</position>
+                <value>Delete</value>
+            </button>
+
+            <button name="moveupbutton" from="addbutton">
+                <position>20,200</position>
+                <value>Move Up</value>
+            </button>
+
+            <button name="movedownbutton" from="addbutton">
+                <position>250,200</position>
+                <value>Move Down</value>
+            </button>
+
+            <button name="ascendingbutton" from="addbutton">
+                <position>20,290</position>
+                <value>Ascending</value>
+            </button>
+
+            <button name="descendingbutton" from="addbutton">
+                <position>250,290</position>
+                <value>Descending</value>
+            </button>
+
+            <button name="okbutton" from="varbuttonright">
+                <value>Save</value>
+            </button>
+
+            <button name="cancelbutton" from="varbuttonleft">
+                <value>Cancel</value>
+            </button>
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M' -> Switch View
+         -> "Playlist Editor - Tree" -> <select a "smart playlist">
+         -> 'E'(dit) -> [Show Results]
+    -->
+    <window name="smartplresultviewer">
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Smart Playlist Result Viewer</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="posgroup" from="baseModeGroup">
+            <area>160,1010,330,50</area>
+            <textarea name="position" from="pagemode">
+                <align>left,vcenter</align>
+                <font>mysmall</font>
+                <extraleading>1</extraleading>
+                <cutdown>left</cutdown>
+            </textarea>
+        </group>
+
+        <group name="dialog">
+            <area>50%-690,30,1380,-100</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <buttonlist name="tracklist" from="basebuttonlist">
+                <area>10,10,-10,-10</area>
+                <spacing>1</spacing>
+                <buttonarea>30,0,-30,100%</buttonarea>
+
+                <statetype name="buttonitem">
+                    <state name="active">
+                        <area>0,0,100%,76</area>
+
+                        <imagetype name="buttonimage">
+                            <area>8,8,50,-8</area>
+                            <filename>mm_nothumb.png</filename>
+                            <preserveaspect>true</preserveaspect>
+                        </imagetype>
+
+                        <textarea name="title">
+                            <area>65,5,-160,-5</area>
+                            <font>mysmall</font>
+                            <align>left,vcenter</align>
+                            <template>%TITLE% by %ARTIST% on %ALBUM%</template>
+                        </textarea>
+
+                        <textarea name="length">
+                            <area>100%-150,5,-10,-5</area>
+                            <align>right,vcenter</align>
+                            <font>mysmall</font>
+                        </textarea>
+                    </state>
+                    <state name="selectedinactive" from="active">
+                        <shape name="background"
+                               from="baseselectedinactivebuttonshape" />
+                        <imagetype name="buttonimage" />
+                        <textarea name="title" />
+                        <textarea name="length" />
+                    </state>
+                    <state name="selectedactive" from="active">
+                        <shape name="background"
+                               from="baseselectedbuttonshape" />
+                        <imagetype name="buttonimage" />
+                        <textarea name="title" />
+                        <textarea name="length" />
+                    </state>
+                </statetype>
+            </buttonlist>
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'E'
+    -->
+    <window name="editmetadata">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Edit Track Information</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>50%-650,50,1300,-170</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="artist_label" from="labeltext">
+                <position>10,10</position>
+                <value>Artist:</value>
+            </textarea>
+
+            <textedit name="artistedit" from="basewidetextedit">
+                <area>270,10,700,90</area>
+            </textedit>
+
+            <imagetype name="artisticon">
+                <area>980,10,90,90</area>
+                <filename>mm_artists.png</filename>
+            </imagetype>
+
+            <button name="searchartistbutton" from="varbuttonright">
+                <area>970,15,300,80</area>
+                <value>Search</value>
+            </button>
+
+            <checkbox name="compilationcheck" from="basecheckbox">
+                <position>190,110</position>
+            </checkbox>
+
+            <textarea name="compilation_label" from="labelcheckbox">
+                <area>230,135,-20,50</area>
+                <value>Compilation</value>
+            </textarea>
+
+            <textarea name="compilation_artist_label" from="artist_label">
+                <position>10,180</position>
+                <value>Artist:</value>
+            </textarea>
+
+            <textedit name="compartistedit" from="artistedit">
+                <position>270,180</position>
+            </textedit>
+
+            <button name="searchcompartistbutton" from="searchartistbutton">
+                <position>970,185</position>
+            </button>
+
+            <textarea name="album_label" from="artist_label">
+                <position>10,260</position>
+                <value>Album:</value>
+            </textarea>
+
+            <textedit name="albumedit" from="artistedit">
+                <position>270,260</position>
+            </textedit>
+
+            <button name="searchalbumbutton" from="searchartistbutton">
+                <position>970,265</position>
+            </button>
+
+            <imagetype name="albumicon">
+                <area>980,260,90,90</area>
+                <filename>mm_albums.png</filename>
+            </imagetype>
+
+            <textarea name="title_text" from="artist_label">
+                <position>10,360</position>
+                <value>Title:</value>
+            </textarea>
+
+            <textedit name="titleedit" from="artistedit">
+                <position>270,360</position>
+            </textedit>
+
+            <textarea name="track_label" from="labeltext">
+                <position>10,450</position>
+                <value>Track No.:</value>
+            </textarea>
+
+            <spinbox name="tracknumspin" from="basespinbox">
+                <position>270,450</position>
+                <template type="zero">N/A</template>
+            </spinbox>
+
+            <textarea name="genre_label" from="artist_label">
+                <position>10,550</position>
+                <value>Genre:</value>
+            </textarea>
+
+            <textedit name="genreedit" from="artistedit">
+                <position>270,550</position>
+            </textedit>
+
+            <button name="searchgenrebutton" from="searchcompartistbutton">
+                <position>970,555</position>
+            </button>
+
+            <imagetype name="genreicon">
+                <area>980,550,90,90</area>
+                <filename>mm_genres.png</filename>
+            </imagetype>
+
+            <textarea name="year_label" from="track_label">
+                <position>10,640</position>
+                <value>Year:</value>
+            </textarea>
+
+            <spinbox name="yearspin" from="basespinbox">
+                <position>270,640</position>
+                <template type="zero">N/A</template>
+            </spinbox>
+
+            <textarea name="rating_label" from="labeltext">
+                <area>400,645,310,80</area>
+                <value>Rating:</value>
+            </textarea>
+
+            <spinbox name="ratingspin" from="basespinbox">
+                <position>720,640</position>
+            </spinbox>
+
+            <statetype name="ratingstate" from="baseratingstate">
+                <position>880,670</position>
+            </statetype>
+
+            <button name="albumartbutton" from="varbuttoncenter">
+                <value>Album Art</value>
+            </button>
+
+            <button name="donebutton" from="varbuttonright">
+                <value>Done</value>
+            </button>
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'E' -> Album Art
+    -->
+    <window name="editalbumart">
+
+        <shape name="background">
+            <area>0,0,100%,100%</area>
+            <fill style="gradient">
+                <gradient start="#000000" end="#302040" alpha="255"
+                          direction="diagonal"  />
+            </fill>
+        </shape>
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Album Artwork</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>10,10,-10,-70</area>
+
+            <shape name="preview-shape">
+                <area>60,40,1320,760</area>
+                <type>roundbox</type>
+                <fill color="#000000" />
+                <cornerradius>20</cornerradius>
+            </shape>
+
+            <imagetype name="coverartimage">
+                <area>80,60,1280,720</area>
+                <filename />
+                <preserveaspect>true</preserveaspect>
+            </imagetype>
+
+            <textarea name="imagefilenametext" from="basetextarea">
+                <area>80,810,1260,55</area>
+                <multiline>no</multiline>
+                <font>mylarge</font>
+                <align>left,vcenter</align>
+                <cutdown>yes</cutdown>
+            </textarea>
+
+            <textarea name="imagetypetext" from="basetextarea">
+                <area>80,865,420,45</area>
+                <multiline>no</multiline>
+                <font>mysmall</font>
+                <align>left,vcenter</align>
+                <cutdown>yes</cutdown>
+            </textarea>
+
+            <buttonlist name="coverartlist" from="ArtworkList">
+                <area>1400,40,-50,-80</area>
+                <align>left,vcenter</align>
+                <statetype name="buttonitem">
+                    <state name="inactive">
+                        <area>0,0,100%,110</area>
+                        <statetype name="locationstate">
+                            <area>10,10,30,30</area>
+                            <state name="file">
+                                <imagetype name="locationimage">
+                                    <area>0,0,30,30</area>
+                                    <filename>mm_folder.png</filename>
+                                </imagetype>
+                            </state>
+                            <state name="tag" from="file">
+                                <imagetype name="locationimage">
+                                    <filename>mm_music_tag.png</filename>
+                                </imagetype>
+                            </state>
+                        </statetype>
+                        <imagetype name="buttonimage">
+                            <area>10,10,-10,-10</area>
+                        </imagetype>
+                    </state>
+
+                    <state name="active" from="inactive" />
+
+                    <state name="selectedinactive" from="inactive">
+                        <area>0,0,100%,190</area>
+                        <imagetype name="buttonimage">
+                            <area>10,10,-10,-10</area>
+                        </imagetype>
+                    </state>
+
+                    <state name="selectedactive" from="selectedinactive">
+                        <statetype name="status" from="itemsSelectedState" />
+                    </state>
+                </statetype>
+            </buttonlist>
+
+            <button name="metadatabutton" from="varbuttonleft">
+                <position>70,100%-100</position>
+                <value>Metadata</value>
+            </button>
+
+            <button name="donebutton" from="varbuttonright">
+                <position>70,100%-100</position>
+                <value>Done</value>
+            </button>
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'I'(nfo)
+    -->
+    <window name="trackdetail_popup">
+        <area>-1,-1,1350,860</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <imagetype name="coverart">
+            <area>100%-510,70,-5,450</area>
+            <filename>mm_nothumb.png</filename>
+            <preserveaspect>true</preserveaspect>
+        </imagetype>
+
+        <textarea name="titlelbl" from="labeltext">
+            <position>20,10</position>
+            <value>Title:</value>
+        </textarea>
+
+        <textarea name="title" from="basetextarea">
+            <area>280,10,565,105</area>
+            <align>left,vcenter</align>
+            <multiline>yes</multiline>
+        </textarea>
+
+        <textarea name="artistlbl" from="titlelbl">
+            <position>20,115</position>
+            <value>Artist:</value>
+        </textarea>
+
+        <textarea name="artist" from="title">
+            <position>280,115</position>
+        </textarea>
+
+        <textarea name="albumlbl" from="titlelbl">
+            <position>20,220</position>
+            <value>Album:</value>
+        </textarea>
+
+        <textarea name="album" from="title">
+            <position>280,220</position>
+        </textarea>
+
+        <textarea name="genrelbl" from="titlelbl">
+            <position>20,325</position>
+            <value>Genre:</value>
+        </textarea>
+
+        <textarea name="genre" from="title">
+            <position>280,325</position>
+        </textarea>
+
+        <textarea name="tracknumlbl" from="titlelbl">
+            <area>20,430,250,50</area>
+            <value>Track No.:</value>
+        </textarea>
+
+        <textarea name="tracknum" from="title">
+            <area>280,430,250,50</area>
+        </textarea>
+
+        <textarea name="lenlbl" from="tracknumlbl">
+            <area>310,430,200,50</area>
+            <value>Length:</value>
+        </textarea>
+
+        <textarea name="length" from="tracknum">
+            <position>520,430</position>
+        </textarea>
+
+        <textarea name="yearlbl" from="tracknumlbl">
+            <position>20,480</position>
+            <value>Year:</value>
+        </textarea>
+
+        <textarea name="year" from="tracknum">
+            <area>280,480,565,50</area>
+        </textarea>
+
+        <textarea name="ratinglbl" from="tracknumlbl">
+            <position>20,530</position>
+            <value>Rating:</value>
+        </textarea>
+
+        <statetype name="rating_state" from="baseratingstate">
+            <position>280,545</position>
+        </statetype>
+
+        <textarea name="dateaddedlbl" from="yearlbl">
+            <position>20,580</position>
+            <value>Date Added:</value>
+        </textarea>
+
+        <textarea name="dateadded" from="year">
+            <position>280,580</position>
+            <value>Last Value</value>
+        </textarea>
+
+        <textarea name="lastplaylbl" from="yearlbl">
+            <position>20,630</position>
+            <value>Last Played:</value>
+        </textarea>
+
+        <textarea name="lastplayed" from="year">
+            <position>280,630</position>
+            <value>Last Value</value>
+        </textarea>
+
+        <textarea name="playcountlbl" from="yearlbl">
+            <position>20,680</position>
+            <value>Played:</value>
+        </textarea>
+
+        <textarea name="playcount" from="year">
+            <position>280,680</position>
+            <template>%playcount% times</template>
+        </textarea>
+
+        <textarea name="filenamelbl" from="yearlbl">
+            <position>20,735</position>
+            <value>Filename:</value>
+        </textarea>
+
+        <textarea name="filename" from="title">
+            <area>280,730,-20,105</area>
+            <multiline>yes</multiline>
+        </textarea>
+    </window>
+
+    <!-- Whatever key is bound to Jump Point -> Show Music MiniPlayer
+    -->
+    <window name="miniplayer">
+        <area>100%-800,20,780,200</area>
+
+        <shape name="background" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <imagetype name="coverart">
+            <filename>mm_nothumb.png</filename>
+            <area>22,22,144,144</area>
+        </imagetype>
+
+        <textarea name="title" from="basetextarea">
+            <area>170,10,-10,40</area>
+            <font>mysmall</font>
+        </textarea>
+
+        <textarea name="artist" from="basetextarea">
+            <area>170,50,-10,35</area>
+            <font>myverysmall</font>
+        </textarea>
+
+        <textarea name="album" from="basetextarea">
+            <area>170,85,-10,35</area>
+            <font>myverysmall</font>
+        </textarea>
+
+        <statetype name="ratings_state">
+        </statetype>
+
+        <textarea name="info" from="basetextarea">
+            <area>170,120,300,35</area>
+            <font>myverysmall</font>
+        </textarea>
+
+        <textarea name="time" from="basetextarea">
+            <area>370,155,-10,30</area>
+            <font>myverysmall</font>
+            <align>right</align>
+        </textarea>
+
+        <progressbar name="progress" from="baseprogressbar">
+            <area>170,185,10,10</area>
+        </progressbar>
+    </window>
+
+    <!-- Home -> Setup -> Media Settings -> Music Tools -> Import Files
+    -->
+    <window name="import_music">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Import Music</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>200,10,-200,-100</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="location_label" from="labeltext">
+                <position>20,10</position>
+                <value>Location:</value>
+            </textarea>
+
+            <textedit name="location" from="basewidetextedit">
+                <area>280,10,900,105</area>
+            </textedit>
+
+            <button name="directoryfinder" from="varbuttonleft">
+                <position>1190,30</position>
+                <value>Search</value>
+            </button>
+
+            <button name="scan" from="varbuttonleft">
+                <area>280,115,900,85</area>
+                <value>Look Up</value>
+            </button>
+
+            <button name="coverart" from="varbuttonright">
+                <area>280,115,900,85</area>
+                <value>Cover Art</value>
+            </button>
+
+            <textarea name="filename_label" from="labeltext">
+                <position>20,220</position>
+                <value>Filename:</value>
+                <align>right,top</align>
+            </textarea>
+
+            <textarea name="filename" from="basetextarea">
+                <area>280,220,-20,105</area>
+                <align>left,top</align>
+                <multiline>yes</multiline>
+            </textarea>
+
+            <checkbox name="compilation" from="basecheckbox">
+                <position>300,325</position>
+            </checkbox>
+
+            <textarea name="compilation_label" from="labelcheckbox">
+                <position>340,325</position>
+                <value>Compilation</value>
+            </textarea>
+
+            <textarea name="compilation_artist_label" from="labeltext">
+                <area>20,430,250,50</area>
+                <value>Comp. Artist:</value>
+            </textarea>
+
+            <textarea name="compartist" from="basetextarea">
+                <area>280,430,-20,50</area>
+                <align>left,vcenter</align>
+            </textarea>
+
+            <textarea name="artist_label" from="compilation_artist_label">
+                <position>20,480</position>
+                <value>Artist:</value>
+                <align>right,vcenter</align>
+            </textarea>
+
+            <textarea name="artist" from="compartist">
+                <position>280,480</position>
+            </textarea>
+
+            <textarea name="album_label" from="artist_label">
+                <position>20,530</position>
+                <value>Album:</value>
+            </textarea>
+
+            <textarea name="album" from="artist">
+                <position>280,530</position>
+            </textarea>
+
+            <textarea name="title_text" from="artist_label">
+                <position>20,580</position>
+                <value>Title:</value>
+            </textarea>
+
+            <textarea name="title" from="artist">
+                <position>280,580</position>
+            </textarea>
+
+            <textarea name="genre_label" from="artist_label">
+                <position>20,630</position>
+                <value>Genre:</value>
+            </textarea>
+
+            <textarea name="genre" from="artist">
+                <position>280,630</position>
+            </textarea>
+
+            <textarea name="year_label" from="artist_label">
+                <position>20,680</position>
+                <value>Year:</value>
+            </textarea>
+
+            <textarea name="year" from="artist">
+                <position>280,680</position>
+            </textarea>
+
+            <textarea name="track_label" from="artist_label">
+                <position>20,730</position>
+                <value>Track No.:</value>
+            </textarea>
+
+            <textarea name="track" from="artist">
+                <position>280,730</position>
+            </textarea>
+
+
+            <button name="prev" from="basebuttonprev">
+                <position>270,780</position>
+            </button>
+
+            <textarea name="position" from="basetextarea">
+                <area>330,790,200,45</area>
+                <align>hcenter</align>
+            </textarea>
+
+            <button name="next" from="basebuttonnext">
+                <position>530,780</position>
+            </button>
+
+            <textarea name="status" from="position">
+                <area>240,840,380,50</area>
+                <value>Already in database</value>
+            </textarea>
+
+            <button name="play" from="varbuttoncenter">
+                <area>700,780,300,85</area>
+                <value>Play</value>
+            </button>
+
+            <button name="add" from="play">
+                <position>1000,780</position>
+                <value>Add</value>
+            </button>
+
+            <button name="nextnew" from="play">
+                <position>700,875</position>
+                <value>Next New</value>
+            </button>
+
+            <button name="addallnew" from="play">
+                <position>1000,875</position>
+                <value>Add All New</value>
+            </button>
+
+        </group>
+    </window>
+
+
+    <!-- Home -> Setup -> Media Settings -> Music Tools
+         -> Import Files -> Cover Art
+    -->
+    <window name="import_coverart">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Import Cover Art</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>200,40,-200,-100</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="file_label" from="labeltext">
+                <position>20,20</position>
+                <value>File:</value>
+                <align>top,right</align>
+            </textarea>
+
+            <textarea name="file" from="basetextarea">
+                <area>280,20,-20,110</area>
+                <align>top,left</align>
+                <multiline>yes</multiline>
+            </textarea>
+
+            <imagetype name="coverart">
+                <area>20,150,600,600</area>
+                <filename>mm_trans_background.png</filename>
+            </imagetype>
+
+            <button name="prev" from="basebuttonprev">
+                <position>680,200</position>
+            </button>
+
+            <textarea name="position" from="basetextarea">
+                <area>740,210,200,45</area>
+                <align>hcenter</align>
+            </textarea>
+
+            <button name="next" from="basebuttonnext">
+                <position>940,200</position>
+            </button>
+
+            <textarea name="status" from="basetextarea">
+                <area>680,255,320,45</area>
+                <value>Already in database</value>
+                <align>hcenter</align>
+            </textarea>
+
+            <button name="copy" from="varbuttonleft">
+                <position>1200,210</position>
+                <value>Copy</value>
+            </button>
+
+            <textarea name="title" from="file_label">
+                <position>620,420</position>
+                <value>Image Type:</value>
+            </textarea>
+
+            <buttonlist name="type" from="basewideselector">
+                <position>760,470</position>
+            </buttonlist>
+
+            <textarea name="destination_label" from="file_label">
+                <position>20,770</position>
+                <value>Destination:</value>
+            </textarea>
+
+            <textarea name="destination" from="file">
+                <position>280,770</position>
+            </textarea>
+
+            <button name="exit" from="varbuttonright">
+                <value>Done</value>
+            </button>
+        </group>
+    </window>
+
+    <!-- Home -> Optical Disks -> Import CD
+    -->
+    <window name="cdripper">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Rip a CD</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>200,20,-200,-100</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="quality_label" from="labeltext">
+                <position>20,10</position>
+                <value>Quality:</value>
+            </textarea>
+
+            <buttonlist name="quality" from="basemediumselector">
+                <position>270,10</position>
+            </buttonlist>
+
+            <checkbox name="compilation" from="basecheckbox">
+                <position>590,10</position>
+            </checkbox>
+
+            <textarea name="comp_label" from="labelcheckbox">
+                <area>630,10,200,105</area>
+                <value>Multi-Artist</value>
+            </textarea>
+
+            <button name="switch" from="varbuttonleft">
+                <area>930,10,300,105</area>
+                <value>Switch Titles</value>
+            </button>
+
+            <textarea name="artist_label" from="labeltext">
+                <position>20,115</position>
+                <value>Artist:</value>
+            </textarea>
+
+            <textedit name="artist" from="basetextedit">
+                <area>270,115,555,90</area>
+            </textedit>
+
+            <button name="searchartist" from="varbuttonleft">
+                <area>830,115,230,90</area>
+                <value>Search</value>
+            </button>
+
+            <textarea name="album_label" from="artist_label">
+                <position>20,225</position>
+                <value>Album:</value>
+            </textarea>
+
+            <textedit name="album" from="artist">
+                <position>270,225</position>
+            </textedit>
+
+            <button name="searchalbum" from="varbuttonleft">
+                <area>830,225,230,90</area>
+                <value>Search</value>
+            </button>
+
+            <textarea name="genre_text" from="artist_label">
+                <position>20,330</position>
+                <value>Genre:</value>
+            </textarea>
+
+            <textedit name="genre" from="artist">
+                <position>270,330</position>
+            </textedit>
+
+            <button name="searchgenre" from="varbuttonleft">
+                <area>830,330,230,90</area>
+                <value>Search</value>
+            </button>
+
+            <textarea name="year_label" from="artist_label">
+                <position>20,435</position>
+                <value>Year:</value>
+            </textarea>
+
+            <textedit name="year" from="artist">
+                <position>270,435</position>
+            </textedit>
+
+            <button name="scan" from="varbuttoncenter">
+                <area>75%,120,-10,80</area>
+                <value>Scan CD</value>
+            </button>
+
+            <button name="rip" from="varbuttoncenter">
+                <area>75%,220,-10,80</area>
+                <value>Rip CD</value>
+            </button>
+
+            <group name="trackgroup">
+                <area>30,540,-30,-10</area>
+
+                <shape name="trackshape">
+                    <area>0,0,100%,100%</area>
+                    <type>box</type>
+                    <fill color="#000000" alpha="255" />
+                </shape>
+
+                <textarea name="track_label" from="basetextarea">
+                    <area>20,10,150,45</area>
+                    <value>Track</value>
+                    <align>hcenter</align>
+                </textarea>
+
+                <textarea name="title_label" from="track_label">
+                    <position>180,10</position>
+                    <value>Title</value>
+                </textarea>
+
+                <textarea name="list_artist_label" from="track_label">
+                    <area>50%+90,10,250,45</area>
+                    <value>Artist</value>
+                </textarea>
+
+                <textarea name="length_label" from="list_artist_label">
+                    <position>100%-280,10</position>
+                    <align>right</align>
+                    <value>Length</value>
+                </textarea>
+
+                <buttonlist name="tracks" from="basechecklist">
+                    <area>0,45,100%,-10</area>
+                    <statetype name="buttonitem">
+                        <state name="active">
+                            <textarea name="track" from="buttontext">
+                                <area>50,3,40,-3</area>
+                                <align>vcenter,right</align>
+                            </textarea>
+                            <textarea name="title" from="buttontext">
+                                <area>110,3,50%+80,-3</area>
+                                <align>vcenter,left</align>
+                            </textarea>
+                            <textarea name="artist" from="title">
+                                <area>50%+100,3,-120,-3</area>
+                            </textarea>
+                            <textarea name="length" from="track">
+                                <area>100%-110,3,-10,-3</area>
+                            </textarea>
+                        </state>
+                        <state name="selectedactive" from="active">
+                            <shape name="background"
+                                   from="baseselectedbuttonshape" />
+                        </state>
+                        <state name="selectedinactive" from="active" />
+                    </statetype>
+                </buttonlist>
+            </group>
+
+        </group>
+    </window>
+
+    <!-- Home -> Optical Disks -> Import CD -> Rip CD
+    -->
+    <window name="ripstatus">
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Ripping CD</value>
+                </textarea>
+            </group>
+        </group>
+
+        <group name="dialog">
+            <area>50%-460,40,920,640</area>
+
+            <shape name="background" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <textarea name="overall_label" from="labeltext">
+                <position>20,40</position>
+                <value>Importing CD:</value>
+                <align>top,right</align>
+            </textarea>
+
+            <textarea name="overall" from="basetextarea">
+                <area>280,40,-40,110</area>
+                <align>left,top</align>
+                <multiline>yes</multiline>
+            </textarea>
+
+            <textarea name="overallpct" from="basetextarea">
+                <area>160,200,600,55</area>
+                <align>hcenter</align>
+            </textarea>
+
+            <progressbar name="overall_progress" from="baseprogressbar">
+                <position>160,150</position>
+            </progressbar>
+
+            <textarea name="track_label" from="overall_label">
+                <position>20,320</position>
+                <value>Encoding Track:</value>
+            </textarea>
+
+            <textarea name="track" from="overall">
+                <position>280,320</position>
+            </textarea>
+
+            <progressbar name="track_progress" from="baseprogressbar">
+                <position>160,430</position>
+            </progressbar>
+
+            <textarea name="trackpct" from="basetextarea">
+                <area>160,480,600,55</area>
+                <align>hcenter</align>
+            </textarea>
+
+            <textarea name="status" from="basetextarea">
+                <area>20,560,-20,55</area>
+            </textarea>
+
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Listen to Music -> 'M'(enu)
+         -> Player Options -> Change Volume
+    -->
+    <window name="volume_popup">
+        <area>-1,100%-150,840,135</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="message" from="basetextarea">
+            <area>20,20,-20,60</area>
+            <multiline>yes</multiline>
+            <align>center</align>
+            <value>Volume</value>
+        </textarea>
+
+        <statetype name="mutestate">
+            <position>60,100</position>
+            <state name="off">
+                <imagetype name="statusimage">
+                    <filename>mm_volume.png</filename>
+                </imagetype>
+            </state>
+            <state name="on">
+                <imagetype name="statusimage">
+                    <filename>mm_volume_muted.png</filename>
+                </imagetype>
+            </state>
+        </statetype>
+
+        <progressbar name="volumeprogress" from="baseprogressbar">
+            <position>100,100</position>
+        </progressbar>
+
+        <textarea name="volume" from="basetextarea">
+            <area>710,95,-10,35</area>
+            <align>left,vcenter</align>
+            <template>%VOLUMEPERCENT%</template>
+        </textarea>
+    </window>
+
+</mythuitheme>

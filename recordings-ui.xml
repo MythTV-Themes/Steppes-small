@@ -1,0 +1,946 @@
+<mythuitheme>
+
+    <!-- Home -> Media Library -> Watch Recordings
+    -->
+    <window name="watchrecordings">
+
+        <imagetype name="fanart">
+            <area>0,0,100%,100%</area>
+            <filename />
+        </imagetype>
+
+        <imagetype name="coverart">
+            <area>35,25,460,680</area>
+            <filename />
+            <preserveaspect>true</preserveaspect>
+        </imagetype>
+
+        <group name="PageHeading" from="basePageHeading">
+            <group name="Heading">
+                <textarea name="text">
+                    <value>Watch Recordings</value>
+                </textarea>
+            </group>
+        </group>
+
+        <buttonlist name="recgroups" from="headingList" />
+
+        <buttonlist name="groups" from="groupsList">
+            <statetype name="buttonitem">
+                <state name="inactive">
+                    <!-- Make inactive buttons disappear -->
+                    <area>0,0,0,0</area>
+
+                    <shape name="groupBorder">
+                        <area>0,0,0,0</area>
+                    </shape>
+
+                    <textarea name="buttontext">
+                        <area>0,0,0,0</area>
+                    </textarea>
+                </state>
+            </statetype>
+        </buttonlist>
+
+        <buttonlist name="recordings" from="episodeList">
+            <triggerevent context="Global" action="MENU">RIGHT</triggerevent>
+
+            <statetype name="buttonitem">
+                <state name="inactive">
+                    <statetype name="status">
+                         <state name="disabled" from="error" />
+                    </statetype>
+
+                    <shape name="stateshape">
+                        <area>45,3,115,32</area>
+                        <type>roundbox</type>
+                        <fill color="#000000" alpha="96" />
+                        <line color="#000000" alpha="255" width="1" />
+                        <cornerradius>20</cornerradius>
+                    </shape>
+
+                    <statetype name="watched">
+                        <state name="yes">
+                            <imagetype name="yes">
+                                <area>50,4,48,24</area>
+                                <filename>Images/icons/watched.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <imagetype name="blank">
+                                <area>50,4,48,24</area>
+                                <filename>Images/icons/watched.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="commflagged">
+                        <state name="yes">
+                            <imagetype name="yes">
+                                <area>110,4,48,24</area>
+                                <filename>Images/icons/commflagged.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <imagetype name="blank">
+                                <area>110,4,48,24</area>
+                                <filename>Images/icons/commflagged.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                        <state name="running">
+                            <imagetype name="animation">
+                                <area>110,4,48,24</area>
+                                <filepattern low="1" high="62">Images/Commflag/flagging.%1.png</filepattern>
+                                <delay>70</delay>
+                            </imagetype>
+                        </state>
+                        <state name="queued">
+                            <imagetype name="run">
+                                <area>110,3,48,24</area>
+                                <filename>Images/icons/queued.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+                </state>
+
+                <state name="active" from="inactive">
+                    <area>0,0,100%,72</area>
+                    <group name="progstats" from="programStatsActive">
+                        <area>175,3,100%,42</area>
+                    </group>
+                </state>
+
+                <state name="selectedinactive">
+                    <area>0,0,100%,289</area>
+
+                    <statetype name="status" from="itemsNotSelectedState">
+                         <state name="disabled" from="error" />
+                    </statetype>
+
+                    <group name="progstats" from="programStatsInactive">
+                        <area>175,3,100%,42</area>
+                    </group>
+
+                    <shape name="stateshape">
+                        <area>40,100%-37,554,31</area>
+                        <type>roundbox</type>
+                        <fill color="#000000" alpha="96" />
+                        <line color="#000000" alpha="255" width="1" />
+                        <cornerradius>20</cornerradius>
+                    </shape>
+
+                    <statetype name="watched">
+                        <state name="yes">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="yes">
+                                <area>50,100%-33,48,24</area>
+                                <filename>Images/icons/watched.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>50,100%-33,48,24</area>
+                                <filename>Images/icons/watched.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="commflagged">
+                        <state name="yes">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="yes">
+                                <area>110,100%-33,48,24</area>
+                                <filename>Images/icons/commflagged.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>110,100%-33,48,24</area>
+                                <filename>Images/icons/commflagged.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                        <state name="running">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="animation">
+                                <area>110,100%-33,48,24</area>
+                                <filepattern low="1" high="62">Images/Commflag/flagging.%1.png</filepattern>
+                                <delay>70</delay>
+                            </imagetype>
+                        </state>
+                        <state name="queued">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="run">
+                                <area>110,100%-33,48,24</area>
+                                <filename>Images/icons/queued.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="autoexpire">
+                        <state name="yes">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="yes">
+                                <area>170,100%-33,48,24</area>
+                                <filename>Images/icons/autoexpire.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>170,100%-33,48,24</area>
+                                <filename>Images/icons/autoexpire.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="cutlist">
+                        <state name="yes">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="yes">
+                                <area>230,100%-33,48,24</area>
+                                <filename>Images/icons/cutlist.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>230,100%-33,48,24</area>
+                                <filename>Images/icons/cutlist.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="bookmark">
+                        <state name="yes">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="yes">
+                                <area>290,100%-33,48,24</area>
+                                <filename>Images/icons/bookmark.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="no">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>290,100%-33,48,24</area>
+                                <filename>Images/icons/bookmark.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="subtitletypes">
+                        <state name="default">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>350,100%-33,48,24</area>
+                                <filename>Images/icons/closedcaptions.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                        <state name="cc">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="cc">
+                                <area>350,100%-33,48,24</area>
+                                <filename>Images/icons/closedcaptions.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="subtitles">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="subtitles">
+                                <area>350,100%-33,48,24</area>
+                                <filename>Images/icons/subtitles.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="onscreensub">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="onscreensub">
+                                <area>350,100%-33,48,24</area>
+                                <filename>Images/icons/subtitles.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="audioprops">
+                        <state name="default">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="blank">
+                                <area>410,100%-33,48,24</area>
+                                <filename>Images/icons/channel2.0.png</filename>
+                                <alpha>64</alpha>
+                            </imagetype>
+                        </state>
+                        <state name="stereo">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="stereo">
+                                <area>410,100%-33,48,24</area>
+                                <filename>Images/icons/channel2.0.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="surround">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="surround">
+                                <area>410,100%-33,48,24</area>
+                                <filename>Images/icons/channel5.1.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="dolby">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="dolby">
+                                <area>410,100%-33,48,24</area>
+                                <filename>Images/icons/DolbyDigital.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="mono">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="mono">
+                                <area>410,100%-33,48,24</area>
+                                <filename>Images/icons/channel1.0.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="videoprops">
+                        <state name="widescreen">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="widescreen">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/wide.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hdtv">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="hdtv">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/HD-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd720">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="hd720">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/720p-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd1080i">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="hd1080i">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/1080i-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd1080p">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="hd1080p">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/1080p-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="uhd4ki">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="4Ki">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/4Ki-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="uhd4kp">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="4Kp">
+                                <area>470,100%-33,48,24</area>
+                                <filename>Images/icons/4Kp-small.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                    <statetype name="codecprops">
+                        <state name="mpeg2">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="stereo">
+                                <area>530,100%-33,48,24</area>
+                                <filename>Images/icons/MPEG2-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="avc">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="surround">
+                                <area>530,100%-33,48,24</area>
+                                <filename>Images/icons/AVC-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hevc">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="dolby">
+                                <area>530,100%-33,48,24</area>
+                                <filename>Images/icons/HEVC-small.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+
+                </state>
+
+                <state name="selectedactive" from="selectedinactive">
+                    <area>0,0,100%,289</area>
+                    <statetype name="status" from="itemsSelectedState">
+                         <state name="disabled" from="error" />
+                    </statetype>
+
+                    <group name="progstats" from="programStatsActive">
+                        <area>175,3,100%,42</area>
+                    </group>
+                </state>
+            </statetype>
+        </buttonlist>
+
+        <group name="msggroup" from="baseMsgGroupLarge">
+            <textarea name="norecordings" from="msgText">
+                <font>mymedium</font>
+                <value>No recordings exist</value>
+            </textarea>
+            <textarea name="rec_count" from="msgText">
+                <area>10,3,-10,-90</area>
+                <template>There is/are %n recording(s) in this display group</template>
+            </textarea>
+            <textarea name="freereport" from="basetextarea">
+                <area>10,100%-90,-10,-3</area>
+                <font>mysmall</font>
+                <multiline>yes</multiline>
+                <extraleading>-2</extraleading>
+                <align>bottom,hcenter</align>
+            </textarea>
+        </group>
+
+        <group name="previewgroup">
+            <area>45,805,430,250</area>
+            <minsize vanish="yes">100%,100%</minsize>
+
+            <shape name="previewBackground">
+                <area>0,0,100%,100%</area>
+                <minsize vanish="yes">100%,100%</minsize>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#555555" alpha="255" />
+            </shape>
+
+            <imagetype name="preview">
+                <area>6,6,-6,-6</area>
+                <minsize vanish="yes">100%,100%</minsize>
+                <preserveaspect>true</preserveaspect>
+            </imagetype>
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Watch Recordings -> Select show
+         -> 'M'(enu) -> Storage Options -> Change Recording Group
+    -->
+    <window name="groupselector">
+        <area>-1,-1,1380,960</area>
+        <group name="items" from="PopupGroup">
+            <group name="PopupGroupMessage">
+                <shape name="textbackground" />
+                <textarea name="label" from="messagearea" />
+                <buttonlist name="groups" from="basepopupbuttonlist">
+                    <area>45%+30,10,-10,-10</area>
+                    <minsize shrink="short" initiator="yes">100%,60</minsize>
+                    <align>top,hcenter</align>
+                    <wrapstyle>selection</wrapstyle>
+                </buttonlist>
+            </group>
+        </group>
+    </window>
+
+    <!-- Home -> Media Library -> Watch Recordings -> 'M'(enu)
+         -> Change Group View
+    -->
+    <window name="changeview">
+        <area>-1,-1,1000,1000</area>
+
+        <group name="popup">
+            <area>0,0,100%,100%</area>
+
+            <shape name="dialogbackground" from="basewidgetshape">
+                <area>0,0,100%,100%</area>
+            </shape>
+
+            <button name="save" from="varbuttonright">
+                <value>Save</value>
+            </button>
+
+            <group name="titlegroup">
+                <area>40,15,-40,47</area>
+                <textarea name="wintitle" from="basetextarea">
+                    <area>10,0,-10,100%</area>
+                    <minsize initiator="no">350,45</minsize>
+                    <font>mymedium</font>
+                    <align>center</align>
+                    <value>Change Group View</value>
+                </textarea>
+            </group>
+
+            <group name="helpgroup">
+                <area>30,70,-30,130</area>
+                <minsize>350,25</minsize>
+
+                <shape name="msgShape">
+                    <area>0,0,100%,100%</area>
+                    <minsize>350,25</minsize>
+                    <type>roundbox</type>
+                    <cornerradius>5</cornerradius>
+                    <fill color="#FFF0F0" alpha="24" />
+                </shape>
+
+                <textarea name="helparea" from="basetextarea">
+                    <area>30,10,-30,-10</area>
+                    <minsize shrink="short">350,25</minsize>
+                    <multiline>yes</multiline>
+                    <extraleading>-2</extraleading>
+                    <font>mysmall</font>
+                    <align>center</align>
+                    <value>Enable and disable the checkboxes below to filter the way recordings are displayed.</value>
+                </textarea>
+            </group>
+
+            <group name="checkgroup">
+                <area>75,220,-75,-100</area>
+
+                <checkbox name="titles" from="basecheckbox">
+                    <position>0,0</position>
+                </checkbox>
+
+                <textarea name="title_label" from="labelcheckbox">
+                    <area>50,0,-50,89</area>
+                    <value>Show Program Titles</value>
+                </textarea>
+
+                <checkbox name="categories" from="titles">
+                    <position>0,105</position>
+                </checkbox>
+
+                <textarea name="cat_text" from="title_label">
+                    <position>50,105</position>
+                    <value>Show Program Categories</value>
+                </textarea>
+
+                <checkbox name="recgroups" from="titles">
+                    <position>0,210</position>
+                </checkbox>
+
+                <textarea name="group_text" from="title_label">
+                    <position>50,210</position>
+                    <value>Show Recording Groups</value>
+                </textarea>
+
+                <checkbox name="watchlist" from="titles">
+                    <position>0,315</position>
+                </checkbox>
+
+                <textarea name="watchlist_text" from="title_label">
+                    <position>50,315</position>
+                    <value>Show Watch List</value>
+                </textarea>
+
+                <checkbox name="searches" from="titles">
+                    <position>0,420</position>
+                </checkbox>
+
+                <textarea name="search_text" from="title_label">
+                    <position>50,420</position>
+                    <value>Show Searches</value>
+                </textarea>
+
+                <checkbox name="livetv" from="titles">
+                    <position>0,525</position>
+                </checkbox>
+
+                <textarea name="livetv_text" from="title_label">
+                    <position>50,525</position>
+                    <value>Show Live TV</value>
+                </textarea>
+
+                <checkbox name="watched" from="titles">
+                    <position>0,630</position>
+                </checkbox>
+
+                <textarea name="watched_text" from="title_label">
+                    <position>50,630</position>
+                    <value>Show Watched Programs</value>
+                </textarea>
+            </group>
+
+        </group>
+
+    </window>
+
+    <!-- Home -> Media Library -> Watch Recordings -> 'M'(enu)
+         -> Change Group Password
+    -->
+    <window name="passwordchanger">
+        <area>-1,-1,1000,289</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="label" from="basetextarea">
+            <area>50,10,-50,89</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <multiline>yes</multiline>
+            <extraleading>-2</extraleading>
+            <value>Change Group Password</value>
+        </textarea>
+
+        <textarea name="oldlabel" from="labeltext">
+            <area>20,110,170,89</area>
+            <value>Old:</value>
+        </textarea>
+
+        <textedit name="oldpassword" from="basetextedit">
+            <position>195,110</position>
+        </textedit>
+
+        <textarea name="newlabel" from="oldlabel">
+            <position>20,215</position>
+            <value>New:</value>
+        </textarea>
+
+        <textedit name="newpassword" from="basetextedit">
+            <position>195,215</position>
+        </textedit>
+
+        <button name="ok" from="varbuttonright">
+            <value>OK</value>
+        </button>
+    </window>
+
+    <!-- Home -> Media Library -> Watch Recordings -> <select recording>
+         -> 'M'(enu) -> Recording Options -> Change Recording Metadata
+    -->
+    <window name="editmetadata">
+        <area>50%-600,50,1400,1000</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="wintitle" from="basetextarea">
+            <area>90,15,-90,47</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <value>Edit Recording Metadata</value>
+        </textarea>
+
+        <group name="helpgroup">
+            <area>20,70,-20,160</area>
+            <minsize>50,25</minsize>
+
+            <shape name="msgShape">
+                <area>0,0,100%,100%</area>
+                <minsize>50,25</minsize>
+                <type>roundbox</type>
+                <cornerradius>5</cornerradius>
+                <fill color="#502550" alpha="80" />
+                <line color="#000000" alpha="0" />
+            </shape>
+
+            <textarea name="helparea" from="basetextarea">
+                <area>10,10,-10,-10</area>
+                <minsize shrink="short">50,25</minsize>
+                <multiline>yes</multiline>
+                <extraleading>-2</extraleading>
+                <font>myverysmall</font>
+                <align>center</align>
+                <value>Using the text areas below, you can change the recording title, subtitle, and description.\n\nOnce you have completed your modifications, click the "Save" button.</value>
+            </textarea>
+        </group>
+
+        <group name="datagroup">
+            <area>60,250,-60,-90</area>
+
+            <textarea name="title_label" from="labeltext">
+                <area>15,0,225,89</area>
+                <value>Title:</value>
+            </textarea>
+
+            <textedit name="title" from="basetextedit">
+                <area>250,0,-20,89</area>
+            </textedit>
+
+            <textarea name="subtitle_label" from="title_label">
+                <position>15,105</position>
+                <value>Subtitle:</value>
+            </textarea>
+
+            <textedit name="subtitle" from="title">
+                <position>250,105</position>
+            </textedit>
+
+            <textarea name="inetref_label" from="title_label">
+                <position>15,210</position>
+                <value>Inetref:</value>
+            </textarea>
+
+            <textedit name="inetref" from="title">
+                <position>250,210</position>
+            </textedit>
+
+            <textarea name="season_label" from="labeltext">
+                <area>5,315,225,89</area>
+                <value>Season:</value>
+            </textarea>
+
+            <spinbox name="season" from="basespinbox">
+                <position>250,315</position>
+            </spinbox>
+
+            <textarea name="episode_label" from="season_label">
+                <position>450,315</position>
+                <value>Episode:</value>
+            </textarea>
+
+            <spinbox name="episode" from="basespinbox">
+                <position>695,315</position>
+            </spinbox>
+
+            <textarea name="description_label" from="labeltext">
+                <area>15,420,225,90</area>
+                <value>Description:</value>
+            </textarea>
+
+            <textedit name="description" from="basemultilinetextedit">
+                <area>250,420,-20,-20</area>
+            </textedit>
+        </group>
+
+        <button name="query_button" from="varbuttonleft">
+            <value>Search</value>
+        </button>
+
+        <button name="ok" from="varbuttonright">
+            <value>Save</value>
+        </button>
+
+    </window>
+
+    <!-- Home -> Media Library -> Watch Recordings -> '1'
+    -->
+    <window name="iconhelp">
+        <area>-1,-1,1150,1020</area>
+
+        <shape name="dialogbackground" from="basewidgetshape">
+            <area>0,0,100%,100%</area>
+        </shape>
+
+        <textarea name="wintitle" from="basetextarea">
+            <area>90,20,-90,38</area>
+            <font>mymedium</font>
+            <align>center</align>
+            <value>Status Icons</value>
+        </textarea>
+
+        <buttonlist name="iconlist" from="basebuttonlist">
+            <area>30,70,-30,-20</area>
+            <wrapstyle>selection</wrapstyle>
+            <spacing>0</spacing>
+
+            <statetype name="buttonitem">
+                <area>0,0,100%,100%</area>
+
+                <state name="active">
+                    <area>0,0,-40,54</area>
+                    <statetype name="icons">
+                        <area>10,10,70,-10</area>
+                        <state name="commflagged">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/commflagged.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="cutlist">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/cutlist.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="autoexpire">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/autoexpire.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="processing">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filepattern low="1" high="62">Images/Commflag/flagging.%1.png</filepattern>
+                                <delay>70</delay>
+                            </imagetype>
+                        </state>
+                        <state name="bookmark">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/bookmark.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="mono">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/channel1.0.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="stereo">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/channel2.0.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="surround">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/channel5.1.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="dolby">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/DolbyDigital.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="cc">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/closedcaptions.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="subtitles">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/subtitles.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="onscreensub">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/subtitles.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="SD">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/SD-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="widescreen">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/wide-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hdtv">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/HD-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd720">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/720p-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd1080i">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/1080i-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hd1080p">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/1080p-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="uhd4ki">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/4Ki-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="uhd4kp">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/4Kp-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="mpeg2">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/MPEG2-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="avchd">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/AVC-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="hevc">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/HEVC-small.png</filename>
+                            </imagetype>
+                        </state>
+                        <state name="watched">
+                            <area>0,0,100%,100%</area>
+                            <imagetype name="statusimage">
+                                <area>0,0,70,100%</area>
+                                <filename>Images/icons/watched.png</filename>
+                            </imagetype>
+                        </state>
+                    </statetype>
+                    <textarea name="buttontext">
+                        <area>90,3,-15,-5</area>
+                        <multiline>yes</multiline>
+                        <extraleading>-2</extraleading>
+                        <font>mysmall</font>
+                        <align>left,vcenter</align>
+                    </textarea>
+                </state>
+                <state name="selectedinactive" from="active" />
+                <state name="selectedactive" from="selectedinactive">
+                    <shape name="background" from="baseselectedbuttonshape" />
+                </state>
+            </statetype>
+        </buttonlist>
+    </window>
+
+</mythuitheme>
