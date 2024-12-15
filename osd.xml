@@ -259,7 +259,7 @@
             <shadowcolor>#000000</shadowcolor>
         </fontdef>
 
-        <area>100,770,1720,80</area>
+        <area>100,780,1720,70</area>
 
         <shape name="background">
             <area>0,0,100%,100%</area>
@@ -285,7 +285,7 @@
             <align>right,top</align>
         </clock>
         <progressbar name="position">
-            <area>10,55,1700,12</area>
+            <area>10,50,1700,12</area>
             <layout>horizontal</layout>
             <style>reveal</style>
             <imagetype name="background">
