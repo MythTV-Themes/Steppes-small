@@ -103,12 +103,12 @@
         </buttonlist>
 
         <shape name="background">
-            <area>715,109,-30,864</area>
+            <area>715,128,-30,864</area>
             <type>box</type>
             <fill color="#000000" alpha="255" />
         </shape>
         <guidegrid name="guidegrid">
-            <area>715,109,-30,864</area>
+            <area>715,128,-30,864</area>
             <layout>horizontal</layout>
             <channels>10</channels>
             <timeslots>6</timeslots>
@@ -199,7 +199,7 @@
             <buttonarea>0,0,100%,100%</buttonarea>
             <spacing>0</spacing>
             <statetype name="buttonitem">
-                <area>0,0,15%,30</area>
+                <area>0,0,25%,30</area>
                 <state name="active">
                     <area>0,0,100%,100%</area>
                     <shape name="timebg">
@@ -220,12 +220,12 @@
         </buttonlist>
 
         <shape name="background">
-            <area>715,109,-30,864</area>
+            <area>715,128,-30,864</area>
             <type>box</type>
             <fill color="#000000" alpha="255" />
         </shape>
         <guidegrid name="guidegrid">
-            <area>715,109,-30,864</area>
+            <area>715,128,-30,864</area>
             <layout>horizontal</layout>
             <channels>10</channels>
             <timeslots>6</timeslots>
@@ -427,6 +427,7 @@
                 <area>0,0,100%,100%</area>
                 <state name="inactive">
                     <area>0,0,100%,47</area>
+
                     <imagetype name="icon">
                         <area>15,10,60,-10</area>
                         <preserveaspect>true</preserveaspect>
@@ -481,8 +482,12 @@
                     </textarea>
 
                 </state>
-                <state name="active" from="inactive" />
-                <state name="selectedinactive" from="inactive" />
+                <state name="active" from="inactive">
+                    <statetype name="status" from="itemsNotSelectedStateNB" />
+                </state>
+                <state name="selectedinactive" from="inactive">
+                    <statetype name="status" from="itemsNotSelectedStateNB" />
+                </state>
                 <state name="selectedactive" from="selectedinactive">
                     <statetype name="status" from="itemsSelectedState" />
                 </state>
@@ -805,13 +810,13 @@
                 <statetype name="buttonitem">
                     <state name="active">
                         <textarea name="name">
-                             <area>5,3,20%,-3</area>
+                             <area>5,3,25%,-3</area>
                         </textarea>
                         <textarea name="sep">
-                            <area>21%,3,15,-3</area>
+                            <area>26%,3,15,-3</area>
                         </textarea>
                          <textarea name="value">
-                             <area>21%+15,3,-10,-3</area>
+                             <area>26%+15,3,-10,-3</area>
                          </textarea>
                     </state>
                     <state name="selectedinactive" from="active" />

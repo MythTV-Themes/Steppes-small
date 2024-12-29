@@ -2109,7 +2109,7 @@
         </group>
 
         <group name="titlegroup" from="baseMsgGroup">
-            <area>0,109,100%,130</area>
+            <area>0,128,100%,130</area>
 
             <shape name="msgShape">
                 <line color="#00FFFF" alpha="160" width="2" />
@@ -2232,6 +2232,23 @@
                 <fill color="#FFFF00" alpha="255" />
             </shape>
         </state>
+    </statetype>
+
+    <statetype name="itemsNotSelectedStateNB" from="itemsNotSelectedState">
+        <state name="default">
+            <area>0,0,100%,100%</area>
+            <minsize shrink="short">100%,60</minsize>
+            <shape name="statusborder">
+                <area>9,0,-9,100%</area>
+                <minsize shrink="short">100%,60</minsize>
+                <type>roundbox</type>
+                <line color="#00FFFF" width="2" alpha="160" />
+                <fill color="#000000" alpha="100" />
+                <cornerradius>10</cornerradius>
+            </shape>
+        </state>
+        <state name="normal" from="default" />
+        <state name="disabled" from="default" />
     </statetype>
 
     <statetype name="itemsSelectedState">
@@ -2513,7 +2530,7 @@
                 </textarea>
 
                 <textarea name="s00e00" depends="subtitle">
-                    <area>15,73,115,42</area>
+                    <area>15,72,115,42</area>
                     <align>center</align>
                 </textarea>
 
@@ -2527,8 +2544,8 @@
                 </textarea>
 
                 <textarea name="subtitle">
-                    <area>130,73,-15,42</area>
-                    <align>left,vcenter</align>
+                    <area>130,77,-15,42</area>
+                    <align>left</align>
                     <font>mymediumlight</font>
                     <cutdown>no</cutdown>
                     <scroll direction="horizontal" returnrate="140" returndelay="4" />
@@ -2548,7 +2565,7 @@
                     <template>%|RATING| %%|(STARS|) %%DESCRIPTION%</template>
                 </textarea>
                 <textarea name="description0" depends="!subtitle">
-                    <area>20,91,-20,-35</area>
+                    <area>20,77,-20,-35</area>
                     <align>left</align>
                     <font>mydesc</font>
                     <multiline>yes</multiline>
