@@ -25,8 +25,61 @@
 
         <buttonlist name="recgroups" from="headingList" />
 
-        <buttonlist name="groups" from="groupsList">
+        <buttonlist name="groupsAlphabet" from="groupsList">
+            <area>30,5,135,795</area>
+            <buttonarea>15,0,-30,100%</buttonarea>
+
             <statetype name="buttonitem">
+                <state name="inactive">
+                    <area>0,0,0,0</area>
+                </state>
+                <state name="selectedinactive">
+                    <area>0,0,0,0</area>
+                </state>
+
+<!--
+                <state name="active">
+                    <shape name="groupBorder">
+                        <line color="#B03090" alpha="250" width="2" />
+                    </shape>
+                </state>
+                <state name="selectedactive">
+                    <shape name="groupBorder">
+                        <line color="#B03090" alpha="250" width="2" />
+                    </shape>
+
+                    <shape name="highlightleft">
+                        <fill color="#B03090" alpha="180" />
+                    </shape>
+                    <shape name="highlightright">
+                        <fill color="#B03090" alpha="180" />
+                    </shape>
+                </state>
+-->
+            </statetype>
+
+            <statetype name="upscrollarrow">
+                <area>0,0,0,0</area>
+            </statetype>
+            <statetype name="downscrollarrow">
+                <area>0,0,0,0</area>
+            </statetype>
+        </buttonlist>
+
+        <buttonlist name="groups" from="groupsList" shadow="groupsAlphabet">
+            <align>bottom,left</align>
+            <shadowalign>vcenter,left</shadowalign>
+
+            <statetype name="buttonitem">
+                <area>0,0,100%,100%</area>
+
+                <state name="shadow" from="inactive">
+                    <area>75,0,-20,72</area>
+                </state>
+                <state name="selectedshadow" from="selectedinactive">
+                    <area>85,0,100%,72</area>
+                </state>
+
                 <state name="inactive">
                     <!-- Make inactive buttons disappear -->
                     <area>0,0,0,0</area>
@@ -39,6 +92,7 @@
                         <area>0,0,0,0</area>
                     </textarea>
                 </state>
+
             </statetype>
         </buttonlist>
 
