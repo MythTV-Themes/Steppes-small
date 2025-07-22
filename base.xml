@@ -1999,7 +1999,7 @@
     <buttonlist name="groupsList">
         <arrange>stack</arrange>
         <align>bottom,left</align>
-        <area>30,5,480,795</area>
+        <area>30,5,480,792</area>
         <buttonarea>15,0,-30,100%</buttonarea>
         <scrollstyle>center</scrollstyle>
         <wrapstyle>items</wrapstyle>

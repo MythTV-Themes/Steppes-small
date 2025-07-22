@@ -26,8 +26,9 @@
         <buttonlist name="recgroups" from="headingList" />
 
         <buttonlist name="groupsAlphabet" from="groupsList">
-            <area>30,5,135,795</area>
+            <area>30,5,135,792</area>
             <buttonarea>15,0,-30,100%</buttonarea>
+            <align>vcenter,left</align>
 
             <statetype name="buttonitem">
                 <state name="inactive">
@@ -37,25 +38,6 @@
                     <area>0,0,0,0</area>
                 </state>
 
-<!--
-                <state name="active">
-                    <shape name="groupBorder">
-                        <line color="#B03090" alpha="250" width="2" />
-                    </shape>
-                </state>
-                <state name="selectedactive">
-                    <shape name="groupBorder">
-                        <line color="#B03090" alpha="250" width="2" />
-                    </shape>
-
-                    <shape name="highlightleft">
-                        <fill color="#B03090" alpha="180" />
-                    </shape>
-                    <shape name="highlightright">
-                        <fill color="#B03090" alpha="180" />
-                    </shape>
-                </state>
--->
             </statetype>
 
             <statetype name="upscrollarrow">
