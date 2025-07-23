@@ -2076,13 +2076,15 @@
                     <area>0,20,5,-20</area>
                     <minsize>100%,20</minsize>
                     <type>ellipse</type>
-                    <fill color="#00FFFF" alpha="190" />
+                    <fill color="#B03090" alpha="255" />
+                    <line color="#00FFFF" width="1" alpha="200" />
                 </shape>
                 <shape name="highlightright">
                     <area>100%-4,20,5,-20</area>
                     <minsize>100%,20</minsize>
                     <type>ellipse</type>
-                    <fill color="#00FFFF" alpha="180" />
+                    <fill color="#B03090" alpha="255" />
+                    <line color="#00FFFF" width="1" alpha="200" />
                 </shape>
             </state>
         </statetype>
@@ -2300,6 +2302,100 @@
                 <cornerradius>10</cornerradius>
                 <line color="#00FFFF" width="2" alpha="160" />
                 <fill color="#000000" alpha="180" />
+            </shape>
+            <shape name="highlightleft">
+                <area>0,15,7,-15</area>
+                <minsize shrink="short">100%,60</minsize>
+                <type>ellipse</type>
+                <fill color="#B03090" alpha="255" />
+                <line color="#00FFFF" width="1" alpha="255" />
+            </shape>
+            <shape name="highlightright">
+                <area>100%-6,15,7,-15</area>
+                <minsize shrink="short">100%,60</minsize>
+                <type>ellipse</type>
+                <fill color="#B03090" alpha="255" />
+                <line color="#00FFFF" width="1" alpha="255" />
+            </shape>
+        </state>
+        <state name="normal" from="default" />
+        <state name="error" from="default">
+            <shape name="statusborder">
+                <line color="#e43e3e" width="2" alpha="255" />
+            </shape>
+            <shape name="highlightleft">
+                <fill color="#e43e3e" alpha="255" />
+            </shape>
+            <shape name="highlightright">
+                <fill color="#e43e3e" alpha="255" />
+            </shape>
+        </state>
+        <state name="warning" from="default">
+            <shape name="statusborder">
+                <line color="#ff9147" width="2" alpha="255" />
+            </shape>
+            <shape name="highlightleft">
+                <fill color="#ff9147" alpha="255" />
+            </shape>
+            <shape name="highlightright">
+                <fill color="#ff9147" alpha="255" />
+            </shape>
+        </state>
+        <state name="disabled" from="default">
+            <shape name="statusborder">
+                <line color="#feffce" width="2" alpha="255" />
+            </shape>
+            <shape name="highlightleft">
+                <fill color="#feffce" alpha="180" />
+            </shape>
+            <shape name="highlightright">
+                <fill color="#feffce" alpha="180" />
+            </shape>
+        </state>
+        <state name="running" from="default">
+            <shape name="statusborder">
+                <line color="#33bf33" width="2" alpha="255" />
+            </shape>
+            <shape name="highlightleft">
+                <fill color="#33bf33" alpha="255" />
+            </shape>
+            <shape name="highlightright">
+                <fill color="#33bf33" alpha="255" />
+            </shape>
+        </state>
+        <state name="marked" from="default">
+            <shape name="statusborder">
+                <line color="#FFFF00" width="2" alpha="255" />
+            </shape>
+            <shape name="highlightleft">
+                <fill color="#FFFF00" alpha="255" />
+            </shape>
+            <shape name="highlightright">
+                <fill color="#FFFF00" alpha="255" />
+            </shape>
+        </state>
+    </statetype>
+
+    <statetype name="itemsSelectedStateWeave">
+        <area>0,0,100%,100%</area>
+        <minsize shrink="short">100%,60</minsize>
+        <state name="default">
+            <area>0,0,100%,100%</area>
+            <minsize shrink="short">100%,60</minsize>
+            <shape name="statusborder">
+                <area>12,2,-12,-2</area>
+                <minsize shrink="short">100%,60</minsize>
+                <type>roundbox</type>
+                <cornerradius>10</cornerradius>
+                <line color="#00FFFF" width="2" alpha="160" />
+                <fill color="#000000" alpha="180" />
+            </shape>
+            <shape name="statusOutline">
+                <area>10,0,-10,100%</area>
+                <minsize shrink="short">100%,60</minsize>
+                <type>roundbox</type>
+                <cornerradius>10</cornerradius>
+                <line color="#B03090" width="2" alpha="255" />
             </shape>
             <shape name="highlightleft">
                 <area>0,15,7,-15</area>

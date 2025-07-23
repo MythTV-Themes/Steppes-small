@@ -70,9 +70,9 @@
 
                 <state name="selectedactive" from="selectedinactive">
                     <area>0,0,100%,100%</area>
-                    <minsize shrink="short">100%,50</minsize>
-                    <statetype name="status" from="itemsSelectedState">
-                        <minsize shrink="short">100%,50</minsize>
+                    <minsize shrink="short">100%,60</minsize>
+                    <statetype name="status" from="itemsSelectedStateWeave">
+                        <minsize shrink="short">100%,60</minsize>
                     </statetype>
 
                     <textarea name="buttontext">
@@ -85,7 +85,6 @@
     </window>
 
     <window name="standbymode" include="steppes-schedule.xml">
-
         <group name="PageHeading" from="basePageHeading">
             <group name="Heading">
                 <statetype name="backendstatus">
