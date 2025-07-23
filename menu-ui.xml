@@ -16,6 +16,7 @@
             <scrollstyle>free</scrollstyle>
             <wrapstyle>selection</wrapstyle>
             <spacing>0</spacing>
+            <showscrollbar>no</showscrollbar>
 
             <triggerevent context="Global" action="SELECT">RIGHT</triggerevent>
 
