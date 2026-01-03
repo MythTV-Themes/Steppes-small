@@ -2178,7 +2178,8 @@
                 <font>mydesc</font>
                 <align>left,top</align>
                 <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]myverysmall[/font]%DESCRIPTION%%\n\n[font]myverysmallsub[/font]Part |PARTNUMBER| of %%PARTTOTAL%%\n[font]myverysmallsub[/font]|CAST| %%[font]myverysmallsub[/font]  \n[font]myverysmalllabel[/font]Director: |DIRECTOR| %</template>
-                <scroll direction="vertical" rate="7" returnrate="105" startdelay="15" returndelay="15" />
+                <scroll direction="vertical" rate="7" returnrate="105"
+                        startdelay="15" returndelay="15"/>
                 <cutdown>no</cutdown>
             </textarea>
         </group>
@@ -2192,7 +2193,8 @@
                 <area>10,10,-10,-10</area>
                 <font>mydesc</font>
                 <align>left,top</align>
-                <scroll direction="vertical" rate="7" returnrate="105" startdelay="15" returndelay="15" />
+                <scroll direction="vertical" rate="7" returnrate="105"
+                        startdelay="15" returndelay="15"/>
                 <cutdown>no</cutdown>
                 <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]myverysmall[/font]%DESCRIPTION%%\n\n[font]myverysmallsub[/font]Part |PARTNUMBER| of %%PARTTOTAL%%\n[font]myverysmallsub[/font]|CAST| %%[font]myverysmallsub[/font]  \n[font]myverysmalllabel[/font]Director: |DIRECTOR| %</template>
             </textarea>
@@ -2618,19 +2620,16 @@
                     <align>right,vcenter</align>
                 </textarea>
 
-                <textarea name="s00e00">
+                <textarea name="syndicatedepisode">
                     <area>15,100%-37,115,42</area>
                     <font>myverysmalllabel</font>
                     <align>center</align>
                 </textarea>
 
-                <textarea name="syndicatedepisode" from="s00e00" depends="!s00e00">
-<!--
-                    <template>%|[SYNDICATEDEPISODE|]%</template>
--->
+                <textarea name="s00e00" from="syndicatedepisode" depends="!syndicatedepisode">
                 </textarea>
 
-                <textarea name="stars" from="s00e00" depends="!s00e00&amp;!syndicatedepisode">
+                <textarea name="stars" from="syndicatedepisode" depends="!s00e00&amp;!syndicatedepisode">
                 </textarea>
             </state>
 
@@ -2663,18 +2662,15 @@
                     <scroll direction="horizontal" returnrate="140" returndelay="4" />
                 </textarea>
 
-                <textarea name="s00e00" depends="subtitle">
+                <textarea name="syndicatedepisode" depends="subtitle">
                     <area>15,72,115,42</area>
                     <align>center</align>
                 </textarea>
 
-                <textarea name="syndicatedepisode" from="s00e00" depends="!s00e00&amp;subtitle">
-<!--
-                    <template>%|[SYNDICATEDEPISODE|]%</template>
--->
+                <textarea name="s00e00" from="syndicatedepisode" depends="!syndicatedepisode&amp;subtitle">
                 </textarea>
 
-                <textarea name="stars" from="s00e00" depends="subtitle&amp;!s00e00&amp;!syndicatedepisode">
+                <textarea name="stars" from="syndicatedepisode" depends="subtitle&amp;!s00e00&amp;!syndicatedepisode">
                 </textarea>
 
                 <textarea name="subtitle">
@@ -2683,9 +2679,6 @@
                     <font>mymediumlight</font>
                     <cutdown>no</cutdown>
                     <scroll direction="horizontal" returnrate="140" returndelay="4" />
-<!--
-                    <template>%SUBTITLE%%  #|PARTNUMBER|/%%PARTTOTAL%</template>
--->
                 </textarea>
 
                 <textarea name="description" depends="subtitle">
@@ -2698,7 +2691,7 @@
                     <cutdown>no</cutdown>
                     <template>%|RATING| %%|(STARS|) %%DESCRIPTION%</template>
                 </textarea>
-                <textarea name="description0" depends="!subtitle">
+                <textarea name="descnosub" depends="!subtitle">
                     <area>20,77,-20,-35</area>
                     <align>left</align>
                     <font>mydesc</font>
@@ -2706,16 +2699,27 @@
                     <extraleading>-2</extraleading>
                     <scroll direction="vertical" rate="10" returnrate="70" startdelay="17" returndelay="17" />
                     <cutdown>no</cutdown>
+                    <template>%|RATING| %%|(STARS|) %%DESCRIPTION%</template>
+                </textarea>
+
+                <textarea name="description0"
+                          depends="!subtitle&amp;syndicatedepisode"
+                          from="descnosub">
+                    <template>[font]myverysmalllabel[/font]%(|SYNDICATEDEPISODE|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%</template>
+                </textarea>
+
+                <textarea name="description1"
+                          depends="!subtitle&amp;!syndicatedepisode"
+                          from="descnosub">
                     <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%</template>
                 </textarea>
 
-                <textarea name="parttotal">
+                 <textarea name="parttotal">
                     <area>675,100%-38,230,38</area>
                     <align>center</align>
                     <font>myverysmallsub</font>
                     <template>%Part |PARTNUMBER| of %%PARTTOTAL%</template>
-                </textarea>
-
+                 </textarea>
             </state>
 
             <state name="selectedactive" from="selectedinactive">
