@@ -2691,7 +2691,7 @@
                     <cutdown>no</cutdown>
                     <template>%|RATING| %%|(STARS|) %%DESCRIPTION%</template>
                 </textarea>
-                <textarea name="descnosub" depends="!subtitle">
+                <textarea name="description0" depends="!subtitle">
                     <area>20,77,-20,-35</area>
                     <align>left</align>
                     <font>mydesc</font>
@@ -2702,15 +2702,15 @@
                     <template>%|RATING| %%|(STARS|) %%DESCRIPTION%</template>
                 </textarea>
 
-                <textarea name="description0"
+                <textarea name="description1"
                           depends="!subtitle&amp;syndicatedepisode"
-                          from="descnosub">
+                          from="description0">
                     <template>[font]myverysmalllabel[/font]%(|SYNDICATEDEPISODE|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%</template>
                 </textarea>
 
-                <textarea name="description1"
+                <textarea name="description2"
                           depends="!subtitle&amp;!syndicatedepisode"
-                          from="descnosub">
+                          from="description0">
                     <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%</template>
                 </textarea>
 
