@@ -247,7 +247,12 @@
                     <textarea name="description" depends="subtitle">
                         <area>20,130,-20,-127</area>
                     </textarea>
-                    <textarea name="description0" depends="!subtitle">
+                    <textarea name="description0" depends="!subtitle&amp;syndicatedepisode">
+                        <area>20,91,-20,-127</area>
+                    </textarea>
+                    <textarea name="description1"
+                              depends="!subtitle&amp;!syndicatedepisode"
+                              from="description0">
                         <area>20,91,-20,-127</area>
                     </textarea>
 

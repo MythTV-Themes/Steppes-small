@@ -2704,8 +2704,14 @@
                 </textarea>
 
                 <textarea name="description1"
-                          depends="!subtitle&amp;!syndicatedepisode"
-                          from="description0">
+                          depends="!subtitle&amp;!syndicatedepisode">
+                    <area>20,77,-20,-35</area>
+                    <align>left</align>
+                    <font>mydesc</font>
+                    <multiline>yes</multiline>
+                    <extraleading>-2</extraleading>
+                    <scroll direction="vertical" rate="10" returnrate="70" startdelay="17" returndelay="17" />
+                    <cutdown>no</cutdown>
                     <template>[font]myverysmalllabel[/font]%(|s00e00|) %%|RATING| %%|(STARS|) %[font]mydesc[/font]%DESCRIPTION%</template>
                 </textarea>
 
